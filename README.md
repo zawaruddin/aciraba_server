@@ -1,2 +1,1 @@
-# aciraba_server
-Aciraba server merupakan modul terpisah untuk mengelola seluruh algoritma dari aplikasi aciraba website.
+<img src="https://i.ibb.co/PFbw3gn/Aciraba-Logo.png" alt="Aciraba-Logo">
