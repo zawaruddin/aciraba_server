@@ -84,7 +84,7 @@ penjualan.simpanpembelian = async function (req, data, con) {
             }
             data = {
                 success: "true",
-                rc: "API00000",
+                rc: "200",
                 msg: "Transaksi pembelian berhasil",
             }
         } else {
@@ -116,7 +116,7 @@ penjualan.hapuspembelian = async function (req, data, con) {
                 '',data[3], data[0], moment().format('YYYY-MM-DD HH:mm:ss'), "PEMBELIAN HAPUS" , "PENGHAPUSAN INFORMASI TRASNAKSI PEMBELIAN PADA OUTLET "+data[1],data[1],data[2]], con)
             data = {
                 success: "true",
-                rc: "API00000",
+                rc: "200",
                 msg: "Hapus transaksi dengan NOTA "+data[0]+" berhasil. Stok akan dikurangi dan dicatat pada KARTU STOK",
             }
         } else {
@@ -161,7 +161,7 @@ penjualan.transaksihutang = async function (req, data, con) {
     if (typeof dataquery.affectedRows === "undefined" || dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             msg: 'Informasi pembayaran hutang dengan NOTA '+data[1]+" berhasil disimpan. Semoga lekas lunas brey...",
         }
     } else {
@@ -182,7 +182,7 @@ penjualan.hapustransaksibhutang = async function (req, data, con) {
     if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             msg: "Hapus transaksi pembayaran hutang dengan NOTA "+data[0]+" berhasil. Tagihan akan ditambahkan lagi pada NOTA "+data[0]+" sesuai nominal hapus",
         }
     } else {
@@ -206,7 +206,7 @@ penjualan.hapustransaksihutang = async function (req, data, con) {
     if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             msg: data[3] == 'edit' ? 'Informasi pembayaran hutang dengan SUB NOTA '+data[0]+' berhasil diubah' : 'Informasi pembayaran hutang dengan NOTA '+data[0]+' berhasil dihapus. Saldo hutang akan dikembalikan ke suplier terkait',
         }
     } else {
@@ -226,7 +226,7 @@ penjualan.ubahhargajualafb = async function (req, data, con) {
     if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             msg: 'Harga Jual Berhasil Diubah',
         }
     } else {
@@ -297,7 +297,7 @@ penjualan.tambahreturpembelian = async function (req, data, con) {
         dataquery = await util.eksekusiQueryPromise(req, 'INSERT INTO `01_trs_returpembelian_detail`(`AI`, `NOTRXRETURBELI`, `NOTRXPEMBELIAN`, `KODEBARANG`, `NAMABARANG`, `JUMLAHBELI`, `JUMLAHRETUR`, `HARGABELI`, `POTONGAN`, `PPN`, `ASALOUTLET`, `ASALLOKASI`, `KETERANGAN`, `JENISTRX`, `OUTLET`,`KODEUNIKMEMBER`)  VALUES ?', [batchinsertretur.map(item => [item.AI, item.NOTRXRETURBELI, item.NOTRXPEMBELIAN, item.KODEBARANG, item.NAMABARANG, item.JUMLAHBELI, item.JUMLAHRETUR, item.HARGABELI, item.POTONGAN, item.PPN, item.ASALOUTLET, item.ASALLOKASI, item.KETERANGAN, item.JENISTRX, item.OUTLET, item.KODEUNIKMEMBER])], con);
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             msg: 'Informasi retur penjualan '+pesan+' berhasil ditranskasi. Silahkan cek laporan jika ingin melakukan analisa secara detail',
         }
     } else {
@@ -320,7 +320,7 @@ penjualan.hapusreturpembelian = async function (req, data, con) {
         if (dataquery.affectedRows > 0) {
             data = {
                 success: "true",
-                rc: "API00000",
+                rc: "200",
                 msg: "Hapus transaksi retur pembelian dengan NOTA "+data[0]+" berhasil. Stok akan dikurangi kenbali dan dicatat pada KARTU STOK",
             }
         } else {

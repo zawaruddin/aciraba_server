@@ -11,7 +11,7 @@ returnmld.acipaytambahoperator = async function (req, data, con) {
     if (typeof dataquery.affectedRows === "undefined" || dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             msg: data[6] == "true" ? 'Informasi OPERATOR Non PPOB berhasil diubah' :'Informasi OPERATOR Non PPOB berhasil ditranskasi. Silahkan tentukan kategori produk anda',
         }
     } else {
@@ -30,7 +30,7 @@ returnmld.acipayhapusoperator = async function (req, data, con) {
     if (typeof dataquery.affectedRows === "undefined" || dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             msg: 'Informasi OPERATOR Non PPOB berhasil dihapus. Produk yang berhubungan dengan OPERATOR ini tidak dapat ditransaksi oleh PELANGGAN',
         }
     } else {
@@ -57,7 +57,7 @@ returnmld.acipaytambahkategori = async function (req, data, con) {
     if (typeof dataquery.affectedRows === "undefined" || dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             msg: 'Informasi kategori Non PPOB ditranskasi. Silahkan sinkronkan ke Server Tujuan jika ingin menggunakan PRODUK API',
         }
     } else {
@@ -76,7 +76,7 @@ returnmld.acipayhapuskategori = async function (req, data, con) {
     if (typeof dataquery.affectedRows === "undefined" || dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             msg: 'Informasi KATEGORI Non PPOB berhasil dihapus. Produk yang berhubungan dengan KATEGORI ini tidak dapat ditranskasi oleh PELANGGAN',
         }
     } else {
@@ -165,7 +165,7 @@ returnmld.tambahprodukacipay = async function (req, data, con) {
     if (typeof dataquery.affectedRows === "undefined" || dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             msg: data[0] == "true" ? 'Informasi PRODUK ACIPAY berhasil diubah' :'Informasi PRODUK ACIPAY berhasil ditranskasi. Silahkan informasikan ke pelanggan anda',
         }
     } else {

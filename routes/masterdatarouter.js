@@ -68,4 +68,7 @@ router.post("/jasondaftarprincipal",masterdataController.jasondaftarprincipal)
 router.post("/jsontambahprincipal",masterdataController.jsontambahprincipal)
 router.post("/jsonhapusprincipal",masterdataController.jsonhapusprincipal)
 router.post("/selectvaluereport",masterdataController.selectvaluereport)
+/*outlet*/
+router.post("/prosesoutlet",masterdataController.prosesoutlet)
+
 module.exports = router

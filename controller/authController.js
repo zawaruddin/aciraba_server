@@ -1,33 +1,20 @@
 require('dotenv').config()
-const {
-	isEmpty
-} = require('lodash');
+const { isEmpty } = require('lodash');
 const authController = {}
 const AuthModel = require("../model/Auth")
 const util = require('../config/utils');
 let hasiljson
 
-authController.apiregister = async function (req, res) {
+authController.pendaftaranmember = async function (req, res) {
 	var data = []
-	data.push(req.body.API_NAMAAWAL)
-	data.push(req.body.API_NAMAAKHIR)
-	data.push(req.body.API_USERNAME)
-	data.push(req.body.API_HASH)
-	data.push(req.body.API_KODEUNIKMEMBER)
-	data.push(req.body.API_EMAIL)
-	hasiljson = await AuthModel.apiregister(req, data, req.con)
+	data.push(req.body.NAMAOUTLET)
+	data.push(req.body.NAMA)
+	data.push(req.body.NAMAPENGGUNA)
+	data.push(req.body.PASSWORD)
+	data.push(req.body.KODEUNIKMEMBER)
+	hasiljson = await AuthModel.pendaftaranmember(req, data, req.con)
 	res.json({
-		apiregister: hasiljson,
-	});
-}
-authController.apilogin = async function (req, res) {
-	var data = []
-	data.push(req.body.API_USERNAME)
-	data.push(req.body.API_HASH)
-	data.push(req.body.API_EMAIL)
-	hasiljson = await AuthModel.apilogin(req, data, req.con)
-	res.json({
-		apiregister: hasiljson,
+		hasiljson: hasiljson,
 	});
 }
 authController.registerapps = async function (req, res) {
@@ -98,22 +85,61 @@ authController.forgetpasspin = async function (req, res) {
 		});
 	}
 }
-authController.sysapp = async function (req, res) {
-	var data = []
-	data.push(req.body.JENISSYS)
-	data.push(req.body.QUERYSYSN)
-	data.push(req.body.STATUS)
-	data.push(req.body.TANGGAL)
-	hasiljson = await AuthModel.sysapp(req, data, req.con)
-	res.json({
-		sysapp: hasiljson,
-	});
-}
 authController.outlet = async function (req, res) {
 	var data = []
 	data.push(req.body.KATAKUNCIPENCARIAN)
 	data.push(req.body.KODEUNIKMEMBER)
 	hasiljson = await AuthModel.outlet(req, data, req.con)
+	res.json({
+		hasiljson: hasiljson,
+	});
+}
+authController.detailinformasioutlet = async function (req, res) {
+	var data = []
+	data.push(req.body.KODEOUTLET)
+	data.push(req.body.KODEUNIKMEMBER)
+	hasiljson = await AuthModel.detailinformasioutlet(req, data, req.con)
+	res.json({
+		hasiljson: hasiljson,
+	});
+}
+authController.hapusoutlet = async function (req, res) {
+	var data = []
+	data.push(req.body.KODEOUTLET)
+	data.push(req.body.KODEUNIKMEMBER)
+	hasiljson = await AuthModel.hapusoutlet(req, data, req.con)
+	res.json({
+		hasiljson: hasiljson,
+	});
+}
+authController.statuspegawai = async function (req, res) {
+	var data = []
+	data.push(req.body.IDPENGGUNA)
+	data.push(req.body.NAMAPENGGUNA)
+	data.push(req.body.NAMAOUTLET)
+	data.push(req.body.STATUSPENGGUNA)
+	data.push(req.body.KODEUNIKMEMBER)
+	hasiljson = await AuthModel.statuspegawai(req, data, req.con)
+	res.json({
+		hasiljson: hasiljson,
+	});
+}
+authController.ubahpasswordproses = async function (req, res) {
+	var data = []
+	data.push(req.body.IDPENGGUNABARU)
+	data.push(req.body.PASSWORDKAMU)
+	data.push(req.body.PASSWORDBARU)
+	data.push(req.body.KODEUNIKMEMBER)
+	data.push(req.body.IDPENGGUNAKAMU)
+	hasiljson = await AuthModel.ubahpasswordproses(req, data, req.con)
+	res.json({
+		hasiljson: hasiljson,
+	});
+}
+authController.daftarpegawai = async function (req, res) {
+	var data = []
+	data.push(req.body.KODEUNIKMEMBER)
+	hasiljson = await AuthModel.daftarpegawai(req, data, req.con)
 	res.json({
 		hasiljson: hasiljson,
 	});

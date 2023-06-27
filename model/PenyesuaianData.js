@@ -34,7 +34,7 @@ penjualan.simpantransaksiopname = async function (req, data, con) {
         dataquery = await util.eksekusiQueryPromise(req, `INSERT INTO 01_trs_opname_detail(AI, NOTAOPNAME, KODEBARANG, NAMABARANG, LOKASIOPNAME, STOKKOMPUTER, STOKOPNAME, KONDISIOPNAME, OUTLET, KODEUNIKMEMBER, HPP, INFORMASI) VALUES ?`, [batchinsert.map(item => ['',item.NOTAOPNAME, item.KODEBARANG, item.NAMABARANG, item.LOKASIOPNAME, item.STOKKOMPUTER, item.STOKOPNAME, item.KONDISIOPNAME, item.OUTLET, item.KODEUNIKMEMBER, item.HPP, item.INFORMASI])], con)
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             msg: 'Informasi tranaksi penyesuaian STOK dengan NOTA '+data[1]+" berhasil disimpan.... Mudah mudahan yang minus bisa tergantikan.",
         }
     } else {
@@ -75,7 +75,7 @@ penjualan.simpanmutasi = async function (req, data, con) {
         dataquery = await util.eksekusiQueryPromise(req, 'INSERT INTO `01_trs_mutasibarang_detail`(`AI`, `NOMORMUTASI`, `KODEBARANG`, `NAMABARANG`, `UNIT`, `STOKAWAL`, `STOKMUTASI`, `NOMINAL`, `ASALOUTLET`, `TUJUANOUTLET`, `ASALLOKASIITEM`, `TUJUANLOKASIITEM`, `OUTLET`, `KODEUNIKMEMBER`) VALUES ?', [batchinsert.map(item => ['',item.NOMORMUTASI, item.KODEBARANG, item.NAMABARANG, item.UNIT, item.STOKAWAL, item.STOKMUTASI, item.NOMINAL, item.ASALOUTLET, item.TUJUANOUTLET, item.ASALLOKASIITEM, item.TUJUANLOKASIITEM, item.OUTLET, item.KODEUNIKMEMBER])], con)
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             msg: 'Informasi tranaksi mutasi item dengan NOTA '+data[1]+" berhasil disimpan.... Silahkan cek di kartu stok.",
         }
     } else {

@@ -241,7 +241,7 @@ laporan.formatlaporanpenjualan = async function (req, data, con) {
     if (dataquery.length > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldata: dataquery.length,
             data: dataquery,
         }
@@ -276,7 +276,7 @@ laporan.formatlaporanreturpenjualan = async function (req, data, con) {
     if (dataquery.length > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldata: dataquery.length,
             data: dataquery,
         }
@@ -320,7 +320,7 @@ laporan.formatlaporanpembelian = async function (req, data, con) {
     if (dataquery.length > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldata: dataquery.length,
             data: dataquery,
         }
@@ -356,7 +356,7 @@ laporan.formatlaporanreturpembelian = async function (req, data, con) {
     if (dataquery.length > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldata: dataquery.length,
             data: dataquery,
         }
@@ -410,7 +410,7 @@ laporan.formatlaporanhutang = async function (req, data, con) {
     if (dataquery.length > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldata: dataquery.length,
             data: dataquery,
         }
@@ -463,7 +463,7 @@ laporan.formatlaporanpiutang = async function (req, data, con) {
     if (dataquery.length > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldata: dataquery.length,
             data: dataquery,
         }

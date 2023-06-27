@@ -736,7 +736,7 @@ masterdataController.tambahkategori = async function (req, res) {
     var data = []
     data.push(req.body.KATEGORIPARENT_ID)
     data.push(req.body.NAMAKATEGORI)
-    data.push(req.body.KATEGORICHILD)
+    data.push(req.body.LOGOKATEGORI)
     data.push(req.body.KODEUNIKMEMBER)
     hasiljson = await masterdatamodel.tambahkategori(req, data, req.con)
     res.json({
@@ -807,7 +807,7 @@ masterdataController.jsonhapusbrand = async function (req, res) {
     data.push(req.body.KODEUNIKMEMBER)
     hasiljson = await masterdatamodel.jsonhapusbrand(req, data, req.con)
     res.json({
-        jsonhapusbrand: hasiljson,
+        hasiljson: hasiljson,
     });
 }
 masterdataController.jsontambahbrand = async function (req, res) {
@@ -817,7 +817,7 @@ masterdataController.jsontambahbrand = async function (req, res) {
     data.push(req.body.KODEUNIKMEMBER)
     hasiljson = await masterdatamodel.jsontambahbrand(req, data, req.con)
     res.json({
-        jsontambahbrand: hasiljson,
+        hasiljson: hasiljson,
     });
 }
 masterdataController.jasondaftarprincipal = async function (req, res) {
@@ -873,6 +873,23 @@ masterdataController.selectvaluereport = async function (req, res) {
     data.push(req.body.DIMANA1)
     data.push(req.body.DIMANA2)
     hasiljson = await SPModel.dataquery_controller_website(req, data, req.con)
+    res.json({
+        hasiljson: hasiljson,
+    });
+}
+masterdataController.prosesoutlet = async function (req, res) {
+    var data = []
+    data.push(req.body.KODEUNIKMEMBER)
+    data.push(req.body.KODEOUTLET)
+    data.push(req.body.NAMAOUTLET)
+    data.push(req.body.ALAMAT)
+    data.push(req.body.LAT)
+    data.push(req.body.LONG)
+    data.push(req.body.NOTELP)
+    data.push(req.body.APAKAHPUSAT)
+    data.push(req.body.PAJAKNEGARA)
+    data.push(req.body.PAJAKTOKO)
+    hasiljson = await masterdatamodel.prosesoutlet(req, data, req.con)
     res.json({
         hasiljson: hasiljson,
     });

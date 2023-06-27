@@ -12,7 +12,7 @@ resto.ajaxpanggillantai = async function (req, data, con) {
     if (dataquery.length > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldata: dataquery.length,
             dataquery: dataquery,
         }
@@ -37,7 +37,7 @@ resto.ajaxdetailpesanan = async function (req, data, con) {
     if (dataquery[0].ADADATA > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldata: dataquery.length,
             dataquery: dataquery,
         }
@@ -60,7 +60,7 @@ resto.updatestatuspemesanan = async function (req, data, con) {
     if (dataquery.length > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldata: dataquery.length,
             dataquery: dataquery,
         }
@@ -89,7 +89,7 @@ resto.hapusinformasimeja = async function (req, data, con) {
         if (dataquery.affectedRows > 0) {
             data = {
                 success: "true",
-                rc: "API00000",
+                rc: "200",
                 totaldata: dataquery.length,
                 dataquery: dataquery,
             }
@@ -115,7 +115,7 @@ resto.simpaninformasimeja = async function (req, data, con) {
     if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldata: dataquery.length,
             dataquery: dataquery,
         }
@@ -144,7 +144,7 @@ resto.loadkds = async function (req, data, con) {
     if (dataquery.length > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldata: dataquery.length,
             dataquery: dataquery,
         }
@@ -165,7 +165,7 @@ resto.sundulpesanan = async function (req, data, con) {
     if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldata: dataquery.length,
             dataquery: dataquery,
         }
@@ -187,7 +187,7 @@ resto.ubahstatuspesanan = async function (req, data, con) {
     if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldata: dataquery.length,
             dataquery: dataquery,
         }
@@ -217,7 +217,7 @@ resto.tandaisemuaselesai = async function (req, data, con) {
         if (dataquery.affectedRows > 0) {
             data = {
                 success: "true",
-                rc: "API00000",
+                rc: "200",
                 totaldata: dataquery.length,
                 dataquery: dataquery,
             }
@@ -241,7 +241,7 @@ resto.filterbystatuspesanan = async function (req, data, con) {
     if (dataquery.length > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldata: dataquery.length,
             dataquery: dataquery,
         }

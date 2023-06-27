@@ -38,7 +38,7 @@ auth.updateproduk = async function (req, data, con) {
     if (typeof dataquery.affectedRows === "undefined" || dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             msg: 'Sinkronisasi terhadap server berhasil. Silahkan tentukan harga jual pada masing masing level pelanggan',
         }
     } else {

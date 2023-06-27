@@ -29,7 +29,7 @@ penjualan.transaksimasuk = async function (req, data, con) {
     if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             msg: 'Transaksi sudah dalam antraian, sekarang sedang diproses oleh PROVIDER tujuan. Silahkan cek pada menu TRX PENJUALAN untuk mendapatkan update mengenai STATUS TRX anda',
         }
     } else {
@@ -48,7 +48,7 @@ penjualan.hapustransaksi = async function (req, data, con) {
     if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             msg: 'Transaksi penjualan dengan nama PRODUK '+data[3]+' berhasil di HAPUS dari daftar',
         }
     } else {
@@ -90,7 +90,7 @@ penjualan.dafartranskasi = async function (req, data, con) {
     if (dataquery.length > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             data:dataquery,
             totaldata: dataquery.length,
             msg: 'Informasi Data Transaksi ACIPAY',
@@ -117,7 +117,7 @@ penjualan.updatewebhooktransaksiacipay = async function (responsejson) {
         if (dataquery.length > 0) {
             data = {
                 success: "true",
-                rc: "API00000",
+                rc: "200",
                 data:dataquery,
                 msg: message,
             }
@@ -149,83 +149,82 @@ penjualan.notamenupenjualan = async function (req, data, con) {
         nomornota = "NOMORNOTA";
         tabel = "01_trs_returpenjualan";
         notayangdicari = "NOTRXRETUR";
-        kolomoutlet = "OUTLET";
+        kolomoutlet = "AND OUTLET = ?";
         kodeunikmember = 'AND KODEUNIKMEMBER = '+data[4];
     }else if (data[0] == "PJ"){
         nomornota = "NOMORNOTA";
         tabel = "01_trs_barangkeluar";
         notayangdicari = "PK_NOTAPENJUALAN";
-        kolomoutlet = "LOKASI";
+        kolomoutlet = "AND LOKASI = ?";
         kodeunikmember = 'AND KODEUNIKMEMBER = '+data[4];
     }else if (data[0] == "AC"){
         nomornota = "NOMORNOTA";
         tabel = "01_acipay_transaksi";
         notayangdicari = "TRANSKASI_ID";
-        kolomoutlet = "LOKASI";
+        kolomoutlet = "AND LOKASI = ?";
         kodeunikmember = 'AND KODEUNIKMEMBER = '+data[4];
     }else if (data[0] == "MBM"){
         nomornota = "NOMOR";
         tabel = "01_tms_penggunaaplikasi";
         notayangdicari = "PENGGUNA_ID";
-        kolomoutlet = "OUTLET";
-        kodeunikmember = '';
+        kolomoutlet = "";
+        kodeunikmember = 'AND KODEUNIKMEMBER = '+data[4];
     }else if (data[0] == "BP"){
         nomornota = "NOMOR";
         tabel = "01_tms_piutangkredit_detail";
         notayangdicari = "NOTRANSAKSI";
-        kolomoutlet = "LOKASI";
+        kolomoutlet = "AND LOKASI = ?";
         kodeunikmember = '';
     }else if (data[0] == "BH"){
         nomornota = "NOMOR";
         tabel = "01_tms_hutangtoko_detail";
         notayangdicari = "NOTRANSAKSI";
-        kolomoutlet = "LOKASI";
+        kolomoutlet = "AND LOKASI = ?";
         kodeunikmember = '';
     }else if (data[0] == "PB"){
         nomornota = "NOMOR";
         tabel = "01_trs_barangmasuk";
         notayangdicari = "NOTA";
-        kolomoutlet = "OUTLET";
+        kolomoutlet = "AND OUTLET = ?";
         kodeunikmember = '';
     }else if (data[0] == "OP"){
         nomornota = "NOMOR";
         tabel = "01_trs_opname";
         notayangdicari = "NOTAOPNAME";
-        kolomoutlet = "OUTLET";
+        kolomoutlet = "AND OUTLET = ?";
         kodeunikmember = '';
     }else if (data[0] == "MT"){
         nomornota = "NOMOR";
         tabel = "01_trs_mutasibarang";
         notayangdicari = "NOMORMUTASI";
-        kolomoutlet = "OUTLET";
+        kolomoutlet = "AND OUTLET = ?";
         kodeunikmember = '';
     }else if (data[0] == "RB"){
         nomornota = "NOMOR";
         tabel = "01_trs_returpembelian";
         notayangdicari = "NOTRXRETURBELI";
-        kolomoutlet = "OUTLET";
+        kolomoutlet = "AND OUTLET = ?";
         kodeunikmember = '';
     }else if (data[0] == "MJ"){
         nomornota = "NOMOR";
         tabel = "01_tms_resto_pesanmeja";
         notayangdicari = "KODEPESAN";
-        kolomoutlet = "OUTLET";
+        kolomoutlet = "AND OUTLET = ?";
         kodeunikmember = '';
     }
-    let dataquery = await util.eksekusiQueryPromise(req, 'select ('+nomornota+'+1) as NONOTA from '+tabel+' WHERE '+notayangdicari+' LIKE ? '+kodeunikmember+' AND '+kolomoutlet+' = ? ORDER BY '+nomornota+' DESC LIMIT 1', ['%'+data[0]+data[1]+data[2]+data[3]+'#%', data[1]], con);
-    if (typeof dataquery.affectedRows === "undefined" || dataquery.affectedRows > 0) {
+    let dataquery = await util.eksekusiQueryPromise(req, 'SELECT ('+nomornota+'+1) as NONOTA FROM '+tabel+' WHERE '+notayangdicari+' LIKE ? '+kodeunikmember+' '+kolomoutlet+' ORDER BY '+nomornota+' DESC LIMIT 1', ['%'+data[0]+data[1]+data[2]+data[3]+'#%', data[1]], con);
+    if (dataquery.length > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             msg: 'Format nota berhasil dibuat dengan format KODEAWALAN/OUTLET/KODEKOMPUTER/TANGGALSEKARANG#URUTANKE',
             nomornota:dataquery.length == 0 ? data[0]+data[1]+data[2]+data[3]+'#1' : data[0]+data[1]+data[2]+data[3]+'#'+dataquery[0].NONOTA,
         }
     } else {
         data = {
             success: 'false',
-            rc: (typeof dataquery.code === "undefined" ? "ERR0000" : dataquery.code),
-            msg: (typeof dataquery.sqlMessage === "undefined" ? "Informasi pembuatan nomor nota otomati GAGAL mengakibatkan nomor nota akan selalu "+data[0]+data[1]+data[2]+data[3]+"#1. Silahkan tunggu berbera saat lagi atau hubungi tim terkait" : dataquery.sqlMessage),
-            nomornota:data[0]+data[1]+data[2]+data[3]+'#1',
+            rc: dataquery.code,
+            msg: dataquery.sqlMessage,
         }
     }
     pesanbalik.push(data)
@@ -285,7 +284,7 @@ penjualan.tambahreturpenjualan = async function (req, data, con) {
         dataquery = await util.eksekusiQueryPromise(req, 'INSERT INTO `01_trs_returpenjualan_detail`(`AI`, `NOTRXRETUR`, `NOTRXPENJUALAN`, `KODEBARANG`, `NAMABARANG`, `JUMLAHBELI`, `JUMLAHRETUR`, `HARGABELI`, `HARGAJUAL`, `PPN`, `TUJUANOUTLET`, `TUJUANLOKASISSTOK`, `KETERANGAN`, `JENISTRX`, `OUTLET`, `KODEUNIKMEMBER`) VALUES ?', [batchinsertretur.map(item => [item.AI, item.NOTRXRETUR, item.NOTRXPENJUALAN, item.KODEBARANG, item.NAMABARANG, item.JUMLAHBELI, item.JUMLAHRETUR, item.HARGABELI, item.HARGAJUAL, item.PPN, item.TUJUANOUTLET, item.TUJUANLOKASISSTOK, item.KETERANGAN, item.JENISTRX, item.OUTLET, item.KODEUNIKMEMBER])], con);
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             msg: 'Informasi retur penjualan '+pesan+' berhasil ditranskasi. Silahkan cek laporan jika ingin melakukan analisa secara detail',
         }
     } else {
@@ -305,7 +304,7 @@ penjualan.detailreturpenjualan = async function (req, data, con) {
     if (queryretur.length > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             msg: "DATA DITEMUKAN",
             totalqueryretur: queryretur.length,
             totalquerypotongpiutang: querypotongpiutang.length,
@@ -336,7 +335,7 @@ penjualan.hapusreturpenjualan = async function (req, data, con) {
         if (dataquery.affectedRows > 0) {
             data = {
                 success: "true",
-                rc: "API00000",
+                rc: "200",
                 msg: "Hapus transaksi retur penjualan dengan NOTA "+data[0]+" berhasil. Stok akan dikurangi kenbali dan dicatat pada KARTU STOK",
             }
         } else {
@@ -366,7 +365,7 @@ penjualan.hapuspenjualan = async function (req, data, con) {
             dataquery = await util.eksekusiQueryPromise(req, `DELETE FROM 01_tms_piutangkredit_detail WHERE TRANSAKSI_ID = ? AND KODEUNIKMEMBER = ?`, [data[0], data[1]], con);
             data = {
                 success: "true",
-                rc: "API00000",
+                rc: "200",
                 msg: 'Informasi penjualan berhasil dihapus. Stok dikurangi tiap item serta informasi PIUTANG KREDIT hingga AKUN JURNAL berhasil dihapus',
             }
             global.io.sockets.emit("NOTIFDASHBOARD"+req.body.LOKASI+req.body.KODEUNIKMEMBER, {});
@@ -395,20 +394,20 @@ penjualan.tambahkeranjangbestbuy = async function (req, data, con) {
         if (dataquery.length == 0) {
             data = {
                 success: 'false',
-                rc: 'API00003',
-                msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi'
+                rc: '404',
+                msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi'
             }
         }else{
             data = {
                 success: "truedasar",
-                rc: "API00000",
+                rc: "200",
                 dataquery: dataquery
             }
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             dataquery: dataquery
         }
     }
@@ -483,7 +482,7 @@ penjualan.simpantransaksi = async function (req, data, con) {
         global.io.sockets.emit("NOTIFDASHBOARD"+req.body.LOKASI+req.body.KODEUNIKMEMBER, {});
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             msg: pesan,
         }
     } else {
@@ -521,7 +520,7 @@ penjualan.transaksipiutang = async function (req, data, con) {
     if (typeof dataquery.affectedRows === "undefined" || dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             msg: 'Informasi pembayaran piutang dengan NOTA '+data[1]+" berhasil disimpan",
         }
     } else {
@@ -547,7 +546,7 @@ penjualan.hapustransaksipiutang = async function (req, data, con) {
     if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             msg: data[3] == 'edit' ? 'Informasi pembayaran piutang dengan SUB NOTA '+data[0]+' berhasil diubah' : 'Informasi pembayaran piutang dengan NOTA '+data[0]+' berhasil dihapus. Saldo piutang akan dikembalikan ke pengguna terkait',
         }
     } else {

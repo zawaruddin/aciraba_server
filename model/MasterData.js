@@ -11,13 +11,13 @@ masterdata.daftarbarang = async function (req, data, con) {
     if (datadaftarbarang[0].length == 0) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi'
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi'
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldata: datadaftarbarang[0].length,
             daftarbarang: datadaftarbarang[0]
         }
@@ -33,7 +33,7 @@ masterdata.daftarbarangdetail = async function (req, data, con) {
     let hasilquery = await util.eksekusiQueryPromise(req, `CALL proc_Controller_Admin(?,?,?,?,?,?,?,?,?,?,?,?,?)`, [data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12], ], con);
     data = {
         success: "true",
-        rc: "API00000",
+        rc: "200",
         totaldata: hasilquery[0].length,
         daftarbarang: hasilquery[0],
         totaldatabestbuygrosir: querygrosir[0].length,
@@ -50,13 +50,14 @@ masterdata.daftarsuplierselect = async function (req, data, con) {
     if (daftarsuplier[0].length == 0) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi'
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
+            totaldata: 0,
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldata: daftarsuplier[0].length,
             daftarsuplier: daftarsuplier[0]
         }
@@ -70,13 +71,13 @@ masterdata.daftakategoriselect = async function (req, data, con) {
     if (daftarkategori[0].length == 0) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi'
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi'
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldata: daftarkategori[0].length,
             daftarkategori: daftarkategori[0]
         }
@@ -90,13 +91,13 @@ masterdata.daftakategoriselectkasir = async function (req, data, con) {
     if (daftarkategori.length == 0) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi'
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi'
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldata: daftarkategori.length,
             daftarkategori: daftarkategori
         }
@@ -110,13 +111,13 @@ masterdata.daftarsatuanselect = async function (req, data, con) {
     if (daftarsatuan[0].length == 0) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi'
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi'
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldata: daftarsatuan[0].length,
             daftarsatuan: daftarsatuan[0]
         }
@@ -130,17 +131,19 @@ masterdata.daftarperusahaan = async function (req, data, con) {
     if (daftarperusahaan.length == 0) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi'
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
+            totaldata: 0,
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldata: daftarperusahaan.length,
             daftarperusahaan: daftarperusahaan
         }
     }
+    
     pesanbalik.push(data)
     return pesanbalik;
 }
@@ -150,13 +153,13 @@ masterdata.daftarprincipal = async function (req, data, con) {
     if (daftarprincipal.length == 0) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi'
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi'
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldata: daftarprincipal.length,
             daftarprincipal: daftarprincipal
         }
@@ -170,13 +173,13 @@ masterdata.jenispembayarantransaksi = async function (req, data, con) {
     if (jenispembayarantransaksi.length == 0) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi'
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi'
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldata: jenispembayarantransaksi.length,
             jenispembayarantransaksi: jenispembayarantransaksi
         }
@@ -190,13 +193,13 @@ masterdata.daftarbrand = async function (req, data, con) {
     if (daftarbrand.length == 0) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi'
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi'
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldata: daftarbrand.length,
             daftarbrand: daftarbrand
         }
@@ -211,17 +214,17 @@ masterdata.rebuildstok = async function (req, data, con) {
     hasilquery = await util.eksekusiQueryPromise(req, 'UPDATE 01_tms_barangkharisma as A JOIN 01_tms_stok as B ON A.BARANG_ID = B.BARANG_ID SET AKTIF = ? WHERE A.BARANG_ID = ? AND B.OUTLET = ? AND B.KODEUNIKMEMBER = ?',
             [data[0] == "1" ? "0" : "1", data[1], data[2], data[3]], con);
     if (!hasilquery) {
-        pesan = '[API00003] Gagal mengubah status item ' + data[1] + ' [' + data[4] + ']'
+        pesan = 'Gagal mengubah status item ' + data[1] + ' [' + data[4] + ']'
         data = {
             success: 'false',
-            rc: 'API00003',
+            rc: '404',
             msg: pesan,
         }
     } else {
-        pesan = '[API00000] Gagal mengubah status item ' + data[1] + ' [' + data[4] + ']'
+        pesan = '[200] Gagal mengubah status item ' + data[1] + ' [' + data[4] + ']'
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             msg: pesan,
         }
     }
@@ -234,7 +237,7 @@ masterdata.tambahitem = async function (req, data, con) {
     if (hasildata[0].ADADATA > 0 && data[0] == "true") {
         data = {
             success: 'false',
-            rc: 'API00003',
+            rc: '404',
             msg: 'Terjadi duplikasi data pada NAMA : '+data[3]+' dengan KODE ITEM : '+data[1]+'. Silahkan masukan dengan KODE ITEM yang berbeda'
         }
     }else{
@@ -299,10 +302,10 @@ masterdata.tambahitem = async function (req, data, con) {
                 data[1],data[2],data[3],data[4],data[5],data[6],data[7],data[8],data[9],data[10],data[11],data[12],data[13],data[14],data[15] == 'true' ? 'AKTIF' : 'TIDAK AKTIF',data[16] == 'true' ? 'DAPAT MINUS' : 'TIDAK DAPAT MINUS' ,data[17] == '1' ? 'JASA' : 'BUKAN JASA',data[18],data[22] == 'true' ? 'AKTIF' : 'TIDAK AKTIF', data[1], data[14]
             ], con);
         }
-        if (typeof daftarsatuan.affectedRows === undefined || daftarsatuan.affectedRows > 0) {
+        if (daftarsatuan.affectedRows > 0) {
             data = {
                 success: "true",
-                rc: "API00000",
+                rc: "200",
                 msg: "Informasi data anda berhasil tersimpan di database",
             }
         } else {
@@ -357,7 +360,7 @@ masterdata.tambahitemajaxbulk = async function (req, data, con) {
     if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             msg: "Informasi data anda berhasil tersimpan di database",
         }
     } else {
@@ -373,11 +376,11 @@ masterdata.tambahitemajaxbulk = async function (req, data, con) {
 masterdata.pecahsatuan = async function (req, data, con) {
     pesanbalik = [];
     dataquery = await util.eksekusiQueryPromise(req, `INSERT INTO 01_tmp_pecahsatuan (AI,IDBARANGASAL,IDBARANGBARU,ASALPECAH,MENJADI,HARGAJUAL,HARGABELI,OUTLET,KODEUNIKMEMBER,KASIR) VALUES (?,?,?,?,?,?,?,?,?,?)`, [data[0], data[1],data[2],data[3], data[4],data[5],data[6], data[7],data[8],data[9] ], con);
-    if (typeof dataquery.affectedRows === undefined || dataquery.affectedRows > 0) {
+    if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
-            msg: '[API00000] Informasi barang '+data[10]+' sebesar '+data[3]+' berhasil dipecah ke barang '+data[11]+' sebesar '+data[4],
+            rc: "200",
+            msg: '[200] Informasi barang '+data[10]+' sebesar '+data[3]+' berhasil dipecah ke barang '+data[11]+' sebesar '+data[4],
         }
     } else {
         data = {
@@ -396,13 +399,13 @@ masterdata.daftarvoucherbarang = async function (req, data, con) {
     if (hasildata.length == 0) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi'
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi'
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldata: hasildata.length,
             datadaftarvoucherbarang: hasildata
         }
@@ -418,13 +421,13 @@ masterdata.tambahbarangvoucher = async function (req, data, con) {
     if (!daftarsatuan) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Sistem gagal dalam menyimpan data ke database. Silahkan hubungi administrator untuk masalah ini'
+            rc: '404',
+            msg: 'Sistem gagal dalam menyimpan data ke database. Silahkan hubungi administrator untuk masalah ini'
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             msg: "Informasi data voucher anda berhasil tersimpan di database",
         }
     }
@@ -439,13 +442,13 @@ masterdata.hapusvoucherbarang = async function (req, data, con) {
     if (!daftarsatuan) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Sistem gagal dalam menyimpan data ke database. Silahkan hubungi administrator untuk masalah ini'
+            rc: '404',
+            msg: 'Sistem gagal dalam menyimpan data ke database. Silahkan hubungi administrator untuk masalah ini'
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             msg: "Informasi data voucher anda berhasil tersimpan di database",
         }
     }
@@ -467,21 +470,21 @@ masterdata.manajemencitraitem = async function (req, data, con) {
     if (!daftarsatuan) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Sistem gagal dalam menyimpan data ke database. Silahkan hubungi administrator untuk masalah ini'
+            rc: '500',
+            msg: 'Sistem gagal dalam menyimpan data ke database. Silahkan hubungi administrator untuk masalah ini'
         }
     } else {
         if(data[0] == "list"){
             data = {
                 success: "true",
-                rc: "API00000",
+                rc: "200",
                 totalcitraitem: daftarsatuan.length,
                 datadaftarsatuan: daftarsatuan,
             }
         }else{
             data = {
                 success: "true",
-                rc: "API00000",
+                rc: "200",
                 msg: "Informasi data voucher anda berhasil tersimpan di database",
             }
         }
@@ -500,13 +503,13 @@ masterdata.kartustok = async function (req, data, con) {
     if (dataquery[0].length == 0) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldatadataquery: dataquery[0].length,
             dataquery: dataquery[0],
         }
@@ -520,13 +523,13 @@ masterdata.diskonpenjualan = async function (req, data, con) {
     if (dataquery[0].length == 0) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldatadataquery: dataquery[0].length,
             dataquery: dataquery[0],
         }
@@ -537,11 +540,11 @@ masterdata.diskonpenjualan = async function (req, data, con) {
 masterdata.hapusdiskonpenjualan = async function (req, data, con) {
     pesanbalik = [];
     dataquery = await util.eksekusiQueryPromise(req, `DELETE FROM 01_tms_diskon WHERE BARANG_ID = ? AND KODEUNIKMEMBER = ? AND OUTLET = ?`, [data[0], data[1], data[2]], con);
-    if (typeof dataquery.affectedRows === undefined || dataquery.affectedRows > 0) {
+    if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
-            msg: '[API00000] Yeyyy... Diskon belanja atas barang '+data[3]+' telah berhasil dihapus dari aplikasi',
+            rc: "200",
+            msg: '[200] Yeyyy... Diskon belanja atas barang '+data[3]+' telah berhasil dihapus dari aplikasi',
         }
     } else {
         data = {
@@ -556,11 +559,11 @@ masterdata.hapusdiskonpenjualan = async function (req, data, con) {
 masterdata.tambahdiskonpenjualan = async function (req, data, con) {
     pesanbalik = [];
     dataquery = await util.eksekusiQueryPromise(req, `INSERT INTO 01_tms_diskon(DISKON_ID,BARANG_ID,MINBELITINGKAT1,DISCNONMEMBER1,DISCMEMBER1,MINBELITINGKAT2,DISCNONMEMBER2,DISCMEMBER2,KATEGORI,KODEUNIKMEMBER,OUTLET) VALUES (?,?,?,?,?,?,?,?,?,?,?)`, [data[0], data[1], data[2],data[3], data[4], data[5],data[6], data[7], data[8], data[9], data[10]], con);
-    if (typeof dataquery.affectedRows === undefined || dataquery.affectedRows > 0) {
+    if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
-            msg: '[API00000] Yeyyy... Diskon belanja atas barang '+data[3]+' telah berhasil ditambahkan ke aplikasi',
+            rc: "200",
+            msg: '[200] Yeyyy... Diskon belanja atas barang '+data[3]+' telah berhasil ditambahkan ke aplikasi',
         }
     } else {
         data = {
@@ -578,13 +581,13 @@ masterdata.kuponbelanja = async function (req, data, con) {
     if (dataquery[0].length == 0) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldatadataquery: dataquery[0].length,
             dataquery: dataquery[0],
         }
@@ -595,14 +598,14 @@ masterdata.kuponbelanja = async function (req, data, con) {
 masterdata.tambahkuponbelanja = async function (req, data, con) {
     pesanbalik = [];
     let tanggalawal, tanggalakhir;
-    tanggalawal = data[2].split("-").reverse().join("-")+" 00:00:00";
-    tanggalakhir =data[3].split("-").reverse().join("-")+" 23:59:59";
+    tanggalawal = data[2];
+    tanggalakhir =data[3];
     dataquery = await util.eksekusiQueryPromise(req, `INSERT INTO 01_tms_voucher(VOUCHER_ID,NAMAVOUCHER,AWALAKTIF,AKHIRAKTIF,TIPEVOUCHER,NOMINALRUPIAH,NOMINALDISKON,BATASTRANSAKSI,MINIMALPEMBELIAN,KODEUNIKMEMBER,OUTLET) VALUES (?,?,?,?,?,?,?,?,?,?,?)`, [data[0], data[1], tanggalawal, tanggalakhir, data[4], data[5],data[6], data[7], data[8], data[9], data[10]], con);
-    if (typeof dataquery.affectedRows === undefined || dataquery.affectedRows > 0) {
+    if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
-            msg: '[API00000] Yeyyy... Voucher belanja  '+data[1]+' telah berhasil ditambahkan ke aplikasi',
+            rc: "200",
+            msg: 'Yeyyy... Voucher belanja  '+data[1]+' telah berhasil ditambahkan ke aplikasi',
         }
     } else {
         data = {
@@ -617,11 +620,11 @@ masterdata.tambahkuponbelanja = async function (req, data, con) {
 masterdata.hapuskuponbelanja = async function (req, data, con) {
     pesanbalik = [];
     dataquery = await util.eksekusiQueryPromise(req, `DELETE FROM 01_tms_voucher WHERE NAMAVOUCHER = ? AND OUTLET = ? AND KODEUNIKMEMBER = ?`, [data[0], data[1],data[2] ], con);
-    if (typeof dataquery.affectedRows === undefined || dataquery.affectedRows > 0) {
+    if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
-            msg: '[API00000] Yeyyy... Voucher belanja '+data[0]+' telah berhasil dihapus dari aplikasi',
+            rc: "200",
+            msg: 'Yeyyy... Voucher belanja '+data[0]+' telah berhasil dihapus dari aplikasi',
         }
     } else {
         data = {
@@ -639,13 +642,13 @@ masterdata.mastersuplier = async function (req, data, con) {
     if (dataquery[0].length == 0) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldatadataquery: dataquery[0].length,
             dataquery: dataquery[0],
         }
@@ -659,8 +662,8 @@ masterdata.hapusmastersuplier = async function (req, data, con) {
     if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
-            msg: '[API00000] Yeyyy... Informasi SUPLIER : '+data[1]+' ['+data[0]+'] telah berhasil dihapus dari aplikasi',
+            rc: "200",
+            msg: '[200] Yeyyy... Informasi SUPLIER : '+data[1]+' ['+data[0]+'] telah berhasil dihapus dari aplikasi',
         }
     } else {
         data = {
@@ -680,11 +683,11 @@ masterdata.tambahmastersuplier = async function (req, data, con) {
     }else{
         dataquery = await util.eksekusiQueryPromise(req, 'INSERT INTO `01_tms_supplier`(`SUPPLIER_AI`, `KODESUPPLIER`, `NAMASUPPLIER`, `NEGARA`, `PROVINSI`, `KOTAKAB`, `KECAMATAN`, `ALAMAT`, `NOTELP`, `NAMABANK`, `NOREK`, `ATASNAMA`, `EMAIL`, `KODEUNIKMEMBER`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [data[0], data[1],data[2], data[3],data[4], data[5],data[6], data[7],data[8], data[9],data[10], data[11],data[12],data[13]], con);
     }
-    if (typeof dataquery.affectedRows === undefined || dataquery.affectedRows > 0) {
+    if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
-            msg: data[14] == "false" ? '[API00000] Yeyyy... Informasi SUPLIER : '+data[2]+' ['+data[1]+'] telah berhasil DIUBAH sesuai informasi terbaru' : '[API00000] Yeyyy... Informasi SUPLIER : '+data[2]+' ['+data[1]+'] telah berhasil ditambahkan ke aplikasi',
+            rc: "200",
+            msg: data[14] == "false" ? '[200] Yeyyy... Informasi SUPLIER : '+data[2]+' ['+data[1]+'] telah berhasil DIUBAH sesuai informasi terbaru' : '[200] Yeyyy... Informasi SUPLIER : '+data[2]+' ['+data[1]+'] telah berhasil ditambahkan ke aplikasi',
         }
     } else {
         data = {
@@ -702,13 +705,13 @@ masterdata.mastersales = async function (req, data, con) {
     if (dataquery[0].length == 0) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldatadataquery: dataquery[0].length,
             dataquery: dataquery[0],
         }
@@ -719,11 +722,11 @@ masterdata.mastersales = async function (req, data, con) {
 masterdata.hapussales = async function (req, data, con) {
     pesanbalik = [];
     dataquery = await util.eksekusiQueryPromise(req, `DELETE FROM 01_tms_sales WHERE KODESALES = ? AND KODEUNIKMEMBER = ?`, [data[0], data[2]], con);
-    if (typeof dataquery.affectedRows === undefined || dataquery.affectedRows > 0) {
+    if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
-            msg: '[API00000] Yeyyy... Informasi SALES : '+data[1]+' ['+data[0]+'] telah berhasil dihapus dari aplikasi',
+            rc: "200",
+            msg: '[200] Yeyyy... Informasi SALES : '+data[1]+' ['+data[0]+'] telah berhasil dihapus dari aplikasi',
         }
     } else {
         data = {
@@ -743,11 +746,11 @@ masterdata.tambahmastersales = async function (req, data, con) {
         dataquery = await util.eksekusiQueryPromise(req, `INSERT INTO 01_tms_sales(KODESALES,NAMA,ALAMAT,KOTA,PROVINSI,NEGARA,KODEPOS,TELEPON,FAX,EMAIL,NOREK,PEMILIKREK,BANK,KETERANGAN,KODEUNIKMEMBER) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
         `, [data[0], data[1],data[2], data[3],data[4], data[5],data[6], data[7],data[8], data[9],data[10], data[11],data[12],data[13],data[14]], con);
     }
-    if (typeof dataquery.affectedRows === undefined || dataquery.affectedRows > 0) {
+    if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
-            msg: data[14] == "false" ? '[API00000] Yeyyy... Informasi SALES : '+data[1]+' ['+data[0]+'] telah berhasil DIUBAH sesuai informasi terbaru' : '[API00000] Yeyyy... Informasi SALES : '+data[1]+' ['+data[0]+'] telah berhasil ditambahkan ke aplikasi',
+            rc: "200",
+            msg: data[14] == "false" ? '[200] Yeyyy... Informasi SALES : '+data[1]+' ['+data[0]+'] telah berhasil DIUBAH sesuai informasi terbaru' : '[200] Yeyyy... Informasi SALES : '+data[1]+' ['+data[0]+'] telah berhasil ditambahkan ke aplikasi',
         }
     } else {
         data = {
@@ -763,21 +766,21 @@ masterdata.mastermember = async function (req, data, con) {
     pesanbalik = [];
     let tanggalawal,tanggalakhir;
     if (data[10] == "true"){
-        tanggalawal = data[5].split("-").reverse().join("-")+" 00:00:00";
-        tanggalakhir = data[6].split("-").reverse().join("-")+" 23:59:59";
+        tanggalawal = data[5];
+        tanggalakhir = data[6];
     }
     dataquerykategori = await util.eksekusiQueryPromise(req, `CALL proc_Controller_Admin(?,?,?,?,?,?,?,?,?,?,?,?,?)`, [data[0], data[1], data[2],'', '', '','', '', '', data[9], '', data[11], data[12]], con);
     dataquery = await util.eksekusiQueryPromise(req, `CALL proc_Controller_Admin(?,?,?,?,?,?,?,?,?,?,?,?,?)`, [data[0], data[1], data[2],data[3], data[4], tanggalawal,tanggalakhir, data[7], data[8], data[9], data[10], data[11], data[12]], con);
     if (dataquery[0].length == 0) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldatadataquery: dataquery[0].length,
             dataquery: dataquery[0],
             totaldataquerykategori: dataquerykategori[0].length,
@@ -794,13 +797,13 @@ masterdata.jsonmemberselect = async function (req, data, con) {
     if (dataquery.length == 0) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldata: dataquery.length,
             dataquery: dataquery,
         }
@@ -815,16 +818,16 @@ masterdata.mastermemberkasir = async function (req, data, con) {
     if (dataquery.length == 0) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldatadataquery: dataquery.length,
             dataquery: dataquery,
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
         }
     }
     pesanbalik.push(data)
@@ -837,16 +840,16 @@ masterdata.mastersalesmankasir = async function (req, data, con) {
     if (dataquery.length == 0) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldatadataquery: dataquery.length,
             dataquery: dataquery,
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
         }
     }
     pesanbalik.push(data)
@@ -856,11 +859,11 @@ masterdata.statusmember = async function (req, data, con) {
     pesanbalik = [];
     dataquery = await util.eksekusiQueryPromise(req, 'UPDATE 01_tms_member SET STATUSAKTIF = ? WHERE MEMBER_ID = ? AND KODEUNIKMEMBER = ?',
     [data[0] == "1" ? "0" : "1", data[1], data[2]], con);
-    if (typeof dataquery.affectedRows === undefined || dataquery.affectedRows > 0) {
+    if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
-            msg: data[0] == "1" ? '[API00000] Yeyyy... Informasi MEMBER : '+data[3]+' ['+data[1]+'] telah berhasil DIUBAH sesuai menjadi TIDAK AKTIF' : '[API00000] Yeyyy... Informasi MEMBER : '+data[3]+' ['+data[1]+'] telah berhasil DIUBAH sesuai menjadi AKTIF KEMBALI',
+            rc: "200",
+            msg: data[0] == "1" ? '[200] Yeyyy... Informasi MEMBER : '+data[3]+' ['+data[1]+'] telah berhasil DIUBAH sesuai menjadi TIDAK AKTIF' : '[200] Yeyyy... Informasi MEMBER : '+data[3]+' ['+data[1]+'] telah berhasil DIUBAH sesuai menjadi AKTIF KEMBALI',
         }
     } else {
         data = {
@@ -875,15 +878,15 @@ masterdata.statusmember = async function (req, data, con) {
 masterdata.tambahmember = async function (req, data, con) {
     pesanbalik = [];
     if (data[39] == "false"){
-        dataquery = await util.eksekusiQueryPromise(req, 'UPDATE 01_tms_member SET NAMA = ?, ALAMAT = ?, KOTA = ?, PROVINSI = ?, NEGARA = ?, KODEPOS = ?, JK = ?, EMAIL = ?, TELEPON = ?, FAX = ?, AKHIRAKTIF = ?, STATUSAKTIF = ?, POINT = ?, NOREK = ?, PEMILIKREK = ?, BANK = ?, NPWP = ?, KETERANGAN = ?, LIMITJUMLAHPIUTANG = ?, JENIS = ?, GRUP = ?, MINIMALPOIN = ?, BATASTAMBAHKREDIT = ?, KEJARTARGET = ?, NAMAFILE = ?, USERNAME = ?, PASSWORD = ?, CATATAN = ?, LIMITBARANGONLINE = ?, LOGO = ?, LIMIT_BRG = ?, NISBACKUP = ?, KODEUNIKMEMBER = ?, OUTLET = ?, NOMOR = ?, TOTALDEPOSIT = ?, ISRESELLER = ?, ANGKAKESUKAAN = ?, KECAMATAN = ? WHERE MEMBER_ID = ? AND KODEUNIKMEMBER = ?', [data[1],data[2], data[3],data[4], data[5],data[6], data[7],data[8], data[9],data[10], data[11].split("-").reverse().join("-")+" 23:59:59",data[12],data[13],data[14],data[15], data[16],data[17], data[18],data[19], data[20],data[21], data[22],data[23], data[24],data[25], data[26],data[27],data[28],data[29],data[30],data[31],data[32],data[33],data[34],data[35],data[36],data[37],data[38],data[43],data[0],data[33]], con);
+        dataquery = await util.eksekusiQueryPromise(req, 'UPDATE 01_tms_member SET NAMA = ?, ALAMAT = ?, KOTA = ?, PROVINSI = ?, NEGARA = ?, KODEPOS = ?, JK = ?, EMAIL = ?, TELEPON = ?, FAX = ?, AKHIRAKTIF = ?, STATUSAKTIF = ?, POINT = ?, NOREK = ?, PEMILIKREK = ?, BANK = ?, NPWP = ?, KETERANGAN = ?, LIMITJUMLAHPIUTANG = ?, JENIS = ?, GRUP = ?, MINIMALPOIN = ?, BATASTAMBAHKREDIT = ?, KEJARTARGET = ?, NAMAFILE = ?, USERNAME = ?, PASSWORD = ?, CATATAN = ?, LIMITBARANGONLINE = ?, LOGO = ?, LIMIT_BRG = ?, NISBACKUP = ?, KODEUNIKMEMBER = ?, OUTLET = ?, NOMOR = ?, TOTALDEPOSIT = ?, ISRESELLER = ?, ANGKAKESUKAAN = ?, KECAMATAN = ? WHERE MEMBER_ID = ? AND KODEUNIKMEMBER = ?', [data[1],data[2], data[3],data[4], data[5],data[6], data[7],data[8], data[9],data[10], data[11],data[12],data[13],data[14],data[15], data[16],data[17], data[18],data[19], data[20],data[21], data[22],data[23], data[24],data[25], data[26],data[27],data[28],data[29],data[30],data[31],data[32],data[33],data[34],data[35],data[36],data[37],data[38],data[43],data[0],data[33]], con);
     }else{
-        dataquery = await util.eksekusiQueryPromise(req, 'INSERT INTO `01_tms_member`(`MEMBER_ID`, `NAMA`, `ALAMAT`, `KOTA`, `PROVINSI`, `NEGARA`, `KODEPOS`, `JK`, `EMAIL`, `TELEPON`, `FAX`, `AKHIRAKTIF`, `STATUSAKTIF`, `POINT`, `NOREK`, `PEMILIKREK`, `BANK`, `NPWP`, `KETERANGAN`, `LIMITJUMLAHPIUTANG`, `JENIS`, `GRUP`, `MINIMALPOIN`, `BATASTAMBAHKREDIT`, `KEJARTARGET`, `NAMAFILE`, `USERNAME`, `PASSWORD`, `CATATAN`, `LIMITBARANGONLINE`, `LOGO`, `LIMIT_BRG`, `NISBACKUP`, `KODEUNIKMEMBER`, `OUTLET`, `NOMOR`, `TOTALDEPOSIT`, `ISRESELLER`, `ANGKAKESUKAAN`,`KECAMATAN`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [data[0], data[1],data[2], data[3],data[4], data[5],data[6], data[7],data[8], data[9],data[10], data[11].split("-").reverse().join("-")+" 23:59:59",data[12],data[13],data[14],data[15], data[16],data[17], data[18],data[19], data[20],data[21], data[22],data[23], data[24],data[25], data[26],data[27],data[28],data[29],data[30],data[31],data[32],data[33],data[34],data[35],data[36],data[37],data[38],data[43]], con);
+        dataquery = await util.eksekusiQueryPromise(req, 'INSERT INTO `01_tms_member`(`MEMBER_ID`, `NAMA`, `ALAMAT`, `KOTA`, `PROVINSI`, `NEGARA`, `KODEPOS`, `JK`, `EMAIL`, `TELEPON`, `FAX`, `AKHIRAKTIF`, `STATUSAKTIF`, `POINT`, `NOREK`, `PEMILIKREK`, `BANK`, `NPWP`, `KETERANGAN`, `LIMITJUMLAHPIUTANG`, `JENIS`, `GRUP`, `MINIMALPOIN`, `BATASTAMBAHKREDIT`, `KEJARTARGET`, `NAMAFILE`, `USERNAME`, `PASSWORD`, `CATATAN`, `LIMITBARANGONLINE`, `LOGO`, `LIMIT_BRG`, `NISBACKUP`, `KODEUNIKMEMBER`, `OUTLET`, `NOMOR`, `TOTALDEPOSIT`, `ISRESELLER`, `ANGKAKESUKAAN`,`KECAMATAN`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [data[0], data[1],data[2], data[3],data[4], data[5],data[6], data[7],data[8], data[9],data[10], data[11],data[12],data[13],data[14],data[15], data[16],data[17], data[18],data[19], data[20],data[21], data[22],data[23], data[24],data[25], data[26],data[27],data[28],data[29],data[30],data[31],data[32],data[33],data[34],data[35],data[36],data[37],data[38],data[43]], con);
     }
     if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
-            msg:'[API00000] Yeyyy... Informasi MEMBER : '+data[1]+' ['+data[0]+'] telah berhasil ditambahkan ke aplikasi',
+            rc: "200",
+            msg:'Yeyyy... Informasi MEMBER : '+data[1]+' ['+data[0]+'] telah berhasil disimpan ke database kami',
         }
     } else {
         data = {
@@ -901,13 +904,13 @@ masterdata.detailmember = async function (req, data, con) {
     if (dataquery[0].length == 0) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldatadataquery: dataquery[0].length,
             dataquery: dataquery[0],
         }
@@ -921,13 +924,13 @@ masterdata.datasatuan = async function (req, data, con) {
     if (dataquery[0].length == 0) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldatadataquery: dataquery[0].length,
             dataquery: dataquery[0],
         }
@@ -938,11 +941,11 @@ masterdata.datasatuan = async function (req, data, con) {
 masterdata.hapussatuan = async function (req, data, con) {
     pesanbalik = [];
     dataquery = await util.eksekusiQueryPromise(req, `DELETE FROM 01_tms_barangsatuan WHERE NAMASATUAN = ? AND KODEUNIKMEMBER = ?`, [data[0], data[1]], con);
-    if (typeof dataquery.affectedRows === undefined || dataquery.affectedRows > 0) {
+    if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
-            msg: '[API00000] Yeyyy... Informasi SATUAN : '+data[1]+' ['+data[0]+'] telah berhasil dihapus dari aplikasi',
+            rc: "200",
+            msg: '[200] Yeyyy... Informasi SATUAN : '+data[1]+' ['+data[0]+'] telah berhasil dihapus dari aplikasi',
         }
     } else {
         data = {
@@ -957,11 +960,11 @@ masterdata.hapussatuan = async function (req, data, con) {
 masterdata.tambahsatuan = async function (req, data, con) {
     pesanbalik = [];
     dataquery = await util.eksekusiQueryPromise(req, `INSERT INTO 01_tms_barangsatuan(NAMASATUAN,KETERANGAN, KODEUNIKMEMBER) VALUES (?,?,?)`, [data[0], data[1],data[2]], con);
-    if (typeof dataquery.affectedRows === undefined || dataquery.affectedRows > 0) {
+    if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
-            msg: '[API00000] Yeyyy... Informasi SATUAN : '+data[1]+' ['+data[0]+'] telah berhasil ditambah ke aplikasi',
+            rc: "200",
+            msg: '[200] Yeyyy... Informasi SATUAN : '+data[1]+' ['+data[0]+'] telah berhasil ditambah ke aplikasi',
         }
     } else {
         data = {
@@ -979,13 +982,13 @@ masterdata.datakategori = async function (req, data, con) {
     if (dataquery[0].length == 0) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldatadataquery: dataquery[0].length,
             dataquery: dataquery[0],
         }
@@ -1000,13 +1003,13 @@ masterdata.hapuskategori = async function (req, data, con) {
         pesan = 'Informasi beban manufaktur '+data[7]+' berhasil diubah'
         dataquery = await util.eksekusiQueryPromise(req, `UPDATE 01_tms_kategori SET BEBANGAJI = ?, BEBANPACKING = ?, BEBANPROMO = ?, BEBANTRANSPORT = ? WHERE KATEGORIPARENT_ID = ? AND KODEUNIKMEMBER = ?`, [data[2],data[3],data[4],data[5],data[0], data[1]], con);
     }else{
-        pesan = '[API00000] Yeyyy... Informasi KATEGORI : '+data[1]+' ['+data[0]+'] telah berhasil dihapus dari aplikasi'
+        pesan = '[200] Yeyyy... Informasi KATEGORI : '+data[1]+' ['+data[0]+'] telah berhasil dihapus dari aplikasi'
         dataquery = await util.eksekusiQueryPromise(req, `DELETE FROM 01_tms_kategori WHERE KATEGORIPARENT_ID = ? AND KODEUNIKMEMBER = ?`, [data[0], data[1]], con);
     }
-    if (typeof dataquery.affectedRows === undefined || dataquery.affectedRows > 0) {
+    if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             msg: pesan,
         }
     } else {
@@ -1021,12 +1024,12 @@ masterdata.hapuskategori = async function (req, data, con) {
 }
 masterdata.tambahkategori = async function (req, data, con) {
     pesanbalik = [];
-    dataquery = await util.eksekusiQueryPromise(req, `INSERT INTO 01_tms_kategori(KATEGORIPARENT_ID, NAMAKATEGORI, KATEGORICHILD, KODEUNIKMEMBER) VALUES (?, ?, ?, ?)`, [data[0], data[1],data[2],data[3]], con);
-    if (typeof dataquery.affectedRows === undefined || dataquery.affectedRows > 0) {
+    dataquery = await util.eksekusiQueryPromise(req, `INSERT INTO 01_tms_kategori(KATEGORIPARENT_ID, NAMAKATEGORI, LOGOKATEGORI, KODEUNIKMEMBER, BEBANGAJI, BEBANPACKING, BEBANPROMO, BEBANTRANSPORT) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, [data[0], data[1],data[2],data[3],0,0,0,0], con);
+    if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
-            msg: '[API00000] Yeyyy... Informasi KATEGORI : '+data[1]+' ['+data[0]+'] telah berhasil ditambah ke aplikasi',
+            rc: "200",
+            msg: '[200] Yeyyy... Informasi KATEGORI : '+data[1]+' ['+data[0]+'] telah berhasil ditambah ke aplikasi',
         }
     } else {
         data = {
@@ -1040,17 +1043,19 @@ masterdata.tambahkategori = async function (req, data, con) {
 }
 masterdata.datakategorianggota = async function (req, data, con) {
     pesanbalik = [];
+    console.log(data)
     dataquery = await util.eksekusiQueryPromise(req, `CALL proc_Controller_Admin(?,?,?,?,?,?,?,?,?,?,?,?,?)`, [data[0], data[1], data[2],data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12]], con);
+    console.log(dataquery)
     if (dataquery[0].length == 0) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldatadataquery: dataquery[0].length,
             dataquery: dataquery[0],
         }
@@ -1061,11 +1066,11 @@ masterdata.datakategorianggota = async function (req, data, con) {
 masterdata.hapuskategorianggota = async function (req, data, con) {
     pesanbalik = [];
     dataquery = await util.eksekusiQueryPromise(req, `DELETE FROM 01_tms_member_grup WHERE KODEGRUP = ? AND KODEUNIKMEMBER = ?`, [data[0], data[1]], con);
-    if (typeof dataquery.affectedRows === undefined || dataquery.affectedRows > 0) {
+    if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
-            msg: '[API00000] Yeyyy... Informasi KATEGORI MEMBER : '+data[1]+' ['+data[0]+'] telah berhasil dihapus dari aplikasi',
+            rc: "200",
+            msg: '[200] Yeyyy... Informasi KATEGORI MEMBER : '+data[1]+' ['+data[0]+'] telah berhasil dihapus dari aplikasi',
         }
     } else {
         data = {
@@ -1080,11 +1085,11 @@ masterdata.hapuskategorianggota = async function (req, data, con) {
 masterdata.tambahkategorianggota = async function (req, data, con) {
     pesanbalik = [];
     dataquery = await util.eksekusiQueryPromise(req, `INSERT INTO 01_tms_member_grup(KODEGRUP, JENIS, GRUP, KODEUNIKMEMBER) VALUES (?, ?, ?, ?)`, [data[0], data[1],data[2],data[3]], con);
-    if (typeof dataquery.affectedRows === undefined || dataquery.affectedRows > 0) {
+    if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
-            rc: "API00000",
-            msg: '[API00000] Yeyyy... Informasi KATEGORI MEMBER : '+data[2]+' ['+data[0]+'] telah berhasil ditambah ke aplikasi',
+            rc: "200",
+            msg: '[200] Yeyyy... Informasi KATEGORI MEMBER : '+data[2]+' ['+data[0]+'] telah berhasil ditambah ke aplikasi',
         }
     } else {
         data = {
@@ -1103,13 +1108,13 @@ masterdata.daftarpembayarannontunai = async function (req, data, con) {
     if (dataquery.length == 0) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldatadataquery: dataquery.length,
             dataquery: dataquery,
         }
@@ -1124,13 +1129,13 @@ masterdata.jasondaftarbrand = async function (req, data, con) {
     if (dataquery.length == 0) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldata: dataquery.length,
             dataquery: dataquery,
         }
@@ -1142,18 +1147,18 @@ masterdata.jsonhapusbrand = async function (req, data, con) {
     pesanbalik = [];
     dataquery = await util.eksekusiQueryPromise(req, 'DELETE FROM 01_tms_brand WHERE BRAND_ID = ? AND KODEUNIKMEMBER = ?',
     [data[0],data[1]], con);
-    if (dataquery.length == 0) {
+    if (dataquery.affectedRows > 0) {
         data = {
-            success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
+            success: "true",
+            rc: "200",
+            totaldata: dataquery.length,
+            dataquery: dataquery,
         }
     } else {
         data = {
-            success: "true",
-            rc: "API00000",
-            totaldata: dataquery.length,
-            dataquery: dataquery,
+            success: 'false',
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
         }
     }
     pesanbalik.push(data)
@@ -1163,18 +1168,18 @@ masterdata.jsontambahbrand = async function (req, data, con) {
     pesanbalik = [];
     dataquery = await util.eksekusiQueryPromise(req, 'INSERT INTO `01_tms_brand`(`AI`, `BRAND_ID`, `NAMA_BRAND`, `KODEUNIKMEMBER`) VALUES (?,?,?,?)',
     ['',data[0],data[1],data[2]], con);
-    if (dataquery.length == 0) {
+    if (dataquery.affectedRows > 0) {
         data = {
-            success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
+            success: "true",
+            rc: "200",
+            totaldata: dataquery.length,
+            dataquery: dataquery,
         }
     } else {
         data = {
-            success: "true",
-            rc: "API00000",
-            totaldata: dataquery.length,
-            dataquery: dataquery,
+            success: 'false',
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
         }
     }
     pesanbalik.push(data)
@@ -1187,13 +1192,13 @@ masterdata.jasondaftarprincipal = async function (req, data, con) {
     if (dataquery.length == 0) {
         data = {
             success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
         }
     } else {
         data = {
             success: "true",
-            rc: "API00000",
+            rc: "200",
             totaldata: dataquery.length,
             dataquery: dataquery,
         }
@@ -1205,18 +1210,18 @@ masterdata.jsontambahprincipal = async function (req, data, con) {
     pesanbalik = [];
     dataquery = await util.eksekusiQueryPromise(req, 'INSERT INTO `01_tms_principal`(`AI`, `PRINCIPAL_ID`, `NAMA_PRINCIPAL`, `KODEUNIKMEMBER`) VALUES (?, ?, ?, ?)',
     ['',data[0],data[1],data[2]], con);
-    if (dataquery.length == 0) {
+    if (dataquery.affectedRows > 0) {
         data = {
-            success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
+            success: "true",
+            rc: "200",
+            totaldata: dataquery.length,
+            dataquery: dataquery,
         }
     } else {
         data = {
-            success: "true",
-            rc: "API00000",
-            totaldata: dataquery.length,
-            dataquery: dataquery,
+            success: 'false',
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
         }
     }
     pesanbalik.push(data)
@@ -1226,18 +1231,39 @@ masterdata.jsonhapusprincipal = async function (req, data, con) {
     pesanbalik = [];
     dataquery = await util.eksekusiQueryPromise(req, 'DELETE FROM 01_tms_principal WHERE PRINCIPAL_ID = ? AND KODEUNIKMEMBER = ?',
     [data[0],data[1]], con);
-    if (dataquery.length == 0) {
+    if (dataquery.affectedRows > 0) {
         data = {
-            success: 'false',
-            rc: 'API00003',
-            msg: '[API00003] Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
+            success: "true",
+            rc: "200",
+            totaldata: dataquery.length,
+            dataquery: dataquery,
         }
     } else {
         data = {
+            success: 'false',
+            rc: '404',
+            msg: 'Informasi kata kunci tidak ada yang terkait atau tidak ditemukan. Silahkan cek lagi',
+        }
+    }
+    pesanbalik.push(data)
+    return pesanbalik;   
+}
+masterdata.prosesoutlet = async function (req, data, con) {
+    pesanbalik = [];
+    dataquery = await util.eksekusiQueryPromise(req, 'INSERT INTO `01_set_outlet`(`AI`, `KODEUNIKMEMBER`, `KODEOUTLET`, `NAMAOUTLET`, `ALAMAT`, `LAT`, `LONG`, `NOTELP`, `APAKAHPUSAT`, `PAJAKNEGARA`, `PAJAKTOKO`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE `KODEUNIKMEMBER` = VALUES (`KODEUNIKMEMBER`), `NAMAOUTLET` = VALUES(`NAMAOUTLET`), `ALAMAT` = VALUES(`ALAMAT`), `LAT` = VALUES(`LAT`), `LONG` = VALUES(`LONG`), `NOTELP` = VALUES(`NOTELP`), `APAKAHPUSAT` = VALUES(`APAKAHPUSAT`), `PAJAKNEGARA` = VALUES(`PAJAKNEGARA`),`PAJAKTOKO` = VALUES(`PAJAKTOKO`)',[null,data[0],data[1],data[2],data[3],data[4],data[5],data[6],data[7],data[8],data[9]], con);
+    if (dataquery.affectedRows > 0) {
+        data = {
             success: "true",
-            rc: "API00000",
-            totaldata: dataquery.length,
+            rc: "200",
+            msg: "Informasi outlet pada TENANT ID "+data[0]+" dengan nama "+data[2]+" ["+data[1]+"] berhasil ditambahkan. Silahkan tambahkan berberapa produk agar anda mendapatkan CUAN",
             dataquery: dataquery,
+        }
+    } else {
+        data = {
+            success: 'false',
+            rc: dataquery.code,
+            msg: dataquery.sqlMessage,
+            dataquery: null,
         }
     }
     pesanbalik.push(data)
