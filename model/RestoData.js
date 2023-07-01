@@ -30,9 +30,9 @@ resto.ajaxdetailpesanan = async function (req, data, con) {
     pesanbalik = [];
     let dataquery;
     if (data[3] == "kasir"){
-        dataquery = await util.eksekusiQueryPromise(req, 'SELECT *,COUNT(*) as ADADATA, MAX(STATUSBARANGPROSES) as MAXPROSES, MIN(STATUSBARANGPROSES) as MINPROSES FROM 01_tms_resto_pesanmeja as A JOIN 01_trs_barangkeluar as B ON A.KODEMENUPESANAN = B.PK_NOTAPENJUALAN JOIN 01_trs_barangkeluar_detail as C ON A.KODEMENUPESANAN = C.PK_NOTAPENJUALAN WHERE (A.TANGGAL BETWEEN ? AND ?) AND KODEMEJA LIKE ? AND A.OUTLET = ? AND A.KODEUNIKMEMBER = ?', [data[4],data[5],'%'+data[0]+'%', data[1], data[2]], con)
+        dataquery = await util.eksekusiQueryPromise(req, 'SELECT *,B.AI_TRANSAKSIKELUAR as AI_TRANSAKSIKELUAR, COUNT(*) as ADADATA, MAX(STATUSBARANGPROSES) as MAXPROSES, MIN(STATUSBARANGPROSES) as MINPROSES FROM 01_tms_resto_pesanmeja as A JOIN 01_trs_barangkeluar as B ON A.KODEMENUPESANAN = B.PK_NOTAPENJUALAN JOIN 01_trs_barangkeluar_detail as C ON A.KODEMENUPESANAN = C.PK_NOTAPENJUALAN WHERE (A.TANGGAL BETWEEN ? AND ?) AND KODEMEJA LIKE ? AND A.OUTLET = ? AND A.KODEUNIKMEMBER = ?', [data[4],data[5],'%'+data[0]+'%', data[1], data[2]], con)
     }else{
-        dataquery = await util.eksekusiQueryPromise(req, 'SELECT *,COUNT(*) as ADADATA, MAX(STATUSBARANGPROSES) as MAXPROSES, MIN(STATUSBARANGPROSES) as MINPROSES FROM 01_tms_resto_pesanmeja as A JOIN 01_trs_barangkeluar as B ON A.KODEMENUPESANAN = B.PK_NOTAPENJUALAN WHERE KODEMEJA = ? AND A.OUTLET = ? AND A.KODEUNIKMEMBER = ?', [data[0], data[1], data[2]], con)
+        dataquery = await util.eksekusiQueryPromise(req, 'SELECT *,B.AI_TRANSAKSIKELUAR as AI_TRANSAKSIKELUAR, COUNT(*) as ADADATA, MAX(STATUSBARANGPROSES) as MAXPROSES, MIN(STATUSBARANGPROSES) as MINPROSES FROM 01_tms_resto_pesanmeja as A JOIN 01_trs_barangkeluar_detail as B ON A.KODEMENUPESANAN = B.PK_NOTAPENJUALAN WHERE KODEMEJA = ? AND A.OUTLET = ? AND A.KODEUNIKMEMBER = ?', [data[0], data[1], data[2]], con)
     }
     if (dataquery[0].ADADATA > 0) {
         data = {

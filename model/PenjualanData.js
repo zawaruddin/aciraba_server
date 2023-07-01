@@ -150,25 +150,25 @@ penjualan.notamenupenjualan = async function (req, data, con) {
         tabel = "01_trs_returpenjualan";
         notayangdicari = "NOTRXRETUR";
         kolomoutlet = "AND OUTLET = ?";
-        kodeunikmember = 'AND KODEUNIKMEMBER = '+data[4];
+        kodeunikmember = 'AND KODEUNIKMEMBER = "'+data[4]+'"';
     }else if (data[0] == "PJ"){
         nomornota = "NOMORNOTA";
         tabel = "01_trs_barangkeluar";
         notayangdicari = "PK_NOTAPENJUALAN";
         kolomoutlet = "AND LOKASI = ?";
-        kodeunikmember = 'AND KODEUNIKMEMBER = '+data[4];
+        kodeunikmember = 'AND KODEUNIKMEMBER = "'+data[4]+'"';
     }else if (data[0] == "AC"){
         nomornota = "NOMORNOTA";
         tabel = "01_acipay_transaksi";
         notayangdicari = "TRANSKASI_ID";
         kolomoutlet = "AND LOKASI = ?";
-        kodeunikmember = 'AND KODEUNIKMEMBER = '+data[4];
+        kodeunikmember = 'AND KODEUNIKMEMBER = "'+data[4]+'"';
     }else if (data[0] == "MBM"){
         nomornota = "NOMOR";
         tabel = "01_tms_penggunaaplikasi";
         notayangdicari = "PENGGUNA_ID";
         kolomoutlet = "";
-        kodeunikmember = 'AND KODEUNIKMEMBER = '+data[4];
+        kodeunikmember = 'AND KODEUNIKMEMBER = "'+data[4]+'"';
     }else if (data[0] == "BP"){
         nomornota = "NOMOR";
         tabel = "01_tms_piutangkredit_detail";
@@ -218,13 +218,14 @@ penjualan.notamenupenjualan = async function (req, data, con) {
             success: "true",
             rc: "200",
             msg: 'Format nota berhasil dibuat dengan format KODEAWALAN/OUTLET/KODEKOMPUTER/TANGGALSEKARANG#URUTANKE',
-            nomornota:dataquery.length == 0 ? data[0]+data[1]+data[2]+data[3]+'#1' : data[0]+data[1]+data[2]+data[3]+'#'+dataquery[0].NONOTA,
+            nomornota: data[0]+data[1]+data[2]+data[3]+'#'+dataquery[0].NONOTA,
         }
     } else {
         data = {
             success: 'false',
             rc: dataquery.code,
             msg: dataquery.sqlMessage,
+            nomornota: data[0]+data[1]+data[2]+data[3]+'#1'
         }
     }
     pesanbalik.push(data)
@@ -461,7 +462,7 @@ penjualan.simpantransaksi = async function (req, data, con) {
         }
     }
     batchinsert = [];
-    if (dataquery.affectedRows > 0) {
+    if (dataquery) {
         if (data[28] == 'false'){
             if (data[32] == "2" || data[32] == "3"){
                 global.io.sockets.emit("NOTIFDINEINTAKEAWAY"+req.body.LOKASI+req.body.KODEUNIKMEMBER, {

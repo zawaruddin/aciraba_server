@@ -462,6 +462,8 @@ masterdata.manajemencitraitem = async function (req, data, con) {
         daftarsatuan = await util.eksekusiQueryPromise(req, `DELETE FROM 01_tms_barangitemcitra WHERE KODEITEM = ? AND KODEUNIKMEMBER = ? AND FILENAME = ?`, [data[2], data[5], data[3]], con);
     }else if(data[0] == "list"){
         daftarsatuan = await util.eksekusiQueryPromise(req, `SELECT * FROM 01_tms_barangitemcitra WHERE KODEITEM = ? AND KODEUNIKMEMBER = ?`, [data[2], data[5]], con);
+    }else if (data[0] == "update"){
+        daftarsatuan = await util.eksekusiQueryPromise(req, `UPDATE 01_tms_barangkharisma SET FILECITRA = ? WHERE BARANG_ID = ? AND KODEUNIKMEMBER = ?`, [data[1], data[2], data[5]], con);
     }else{
         daftarsatuan = await util.eksekusiQueryPromise(req, `INSERT INTO 01_tms_barangitemcitra(AI,KODEITEM,FILENAME,GAMBARUTAMA,KODEUNIKMEMBER) VALUES (?,?,?,?,?)`, [
             "", data[2], data[3], data[4], data[5]
@@ -1043,9 +1045,7 @@ masterdata.tambahkategori = async function (req, data, con) {
 }
 masterdata.datakategorianggota = async function (req, data, con) {
     pesanbalik = [];
-    console.log(data)
     dataquery = await util.eksekusiQueryPromise(req, `CALL proc_Controller_Admin(?,?,?,?,?,?,?,?,?,?,?,?,?)`, [data[0], data[1], data[2],data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12]], con);
-    console.log(dataquery)
     if (dataquery[0].length == 0) {
         data = {
             success: 'false',
