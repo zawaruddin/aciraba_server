@@ -9,7 +9,7 @@ ACIRABA Server berbasis NODE JS adalah modul webservice yang digunakan untuk alg
 4. Database Management : Workbrench, Navicat, dll
 5. Postman untuk test API
 ## Installation
-Berikut adalah cara pemasangan / install webservice untuk aciraba pada perangkat anda
+Berikut adalah cara pemasangan / install webservice untuk aciraba pada perangkat anda <br>
 0. Pastikan unggah database terlebih dahulu yang terletak pada FOLDER DATABASE kedalam MYSQL DATABASE SERVER anda kemudian sesuaikan konfigurasi pada .env yang anda. Untuk format format .env
 ```bash
 DB_HOST=Alamat ip / domain host database anda
