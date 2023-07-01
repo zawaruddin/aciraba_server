@@ -3,13 +3,40 @@
 ## Apa Itu Aciraba Server ?
 ACIRABA Server berbasis NODE JS adalah modul webservice yang digunakan untuk algoritma ACIRABA pada website. Modul ini bertanggung jawab untuk menyediakan endpoint dan layanan yang dibutuhkan oleh aplikasi web ACIRABA
 ## Alat perang sebelum install
-1. API KEY untuk verifikasi jika meminta VERIFIKASI API KEY (GRATIS). Join Discord ![Pandawa Cipta Karya](https://discordapp.com/api/guilds/1111461269602566185/widget.png?style=banner2)
+1. API KEY untuk verifikasi jika meminta VERIFIKASI API KEY (GRATIS). Join Discord [Pandawa Cipta Karya](https://discord.gg/K3fsg32a6n)
 2. Database : MySQL 8 atau MariaDB 10.x.x
 3. Visual Code
 4. Database Management : Workbrench, Navicat, dll
 5. Postman untuk test API
 ## Installation
 Berikut adalah cara pemasangan / install webservice untuk aciraba pada perangkat anda
+0. Pastikan unggah database terlebih dahulu yang terletak pada FOLDER DATABASE kedalam MYSQL DATABASE SERVER anda kemudian sesuaikan konfigurasi pada .env yang anda. Untuk format format .env
+```bash
+DB_HOST=Alamat ip / domain host database anda
+DB_USER=user database
+DB_PASS=password database
+DB_NAME=nama database
+DB_PORT=port database
+
+PRICEPLAN=
+DEFAUL_MARKUP=5
+
+ACCESS_TOKEN_RHS=buat token yang untuk untuk JWT
+OTP_TOKEN_RHS=OTP Token
+FCM_SERVER_KEY=
+
+DIGIFLAZZ_USERNAME=
+DIGIFLAZZ_KEY_BACK=
+DIGIFLAZZ_KEY=
+DIGIFLAZZ_SECRET_KEY=
+
+EMAIL_HOST=
+EMAIL_PORT=
+EMAIL_ISSECURE=true
+EMAIL_USERNAME=
+EMAIL_PASSWORD=
+EMAIL_DARI =
+```
 1. Install nodejs pada perangkat anda dan pilih versi node js dengan versi 16 keatas
 2. Download project ini atau clone project ini kedalam perangkat anda
 ```bash
