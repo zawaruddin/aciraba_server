@@ -8,7 +8,7 @@ returnmld.acipaytambahoperator = async function (req, data, con) {
     }else{
         dataquery = await util.eksekusiQueryPromise(req, `INSERT INTO 01_acipay_operatornonppob(APISERVER_ID, OPERATOR_ID, OPERATOR_NAMA, PREFIX, IMGURL, STATUS) VALUES (?, ?, ?, ?, ?, ?)`, [data[0], data[1], data[2],data[3], data[4], data[5]], con);
     }
-    if (typeof dataquery.affectedRows === "undefined" || dataquery.affectedRows > 0) {
+    if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
             rc: "200",
@@ -27,7 +27,7 @@ returnmld.acipaytambahoperator = async function (req, data, con) {
 returnmld.acipayhapusoperator = async function (req, data, con) {
     pesanbalik = [];
     dataquery = await util.eksekusiQueryPromise(req, `DELETE FROM 01_acipay_operatornonppob WHERE OPERATOR_ID = ?`, [data[0]], con);
-    if (typeof dataquery.affectedRows === "undefined" || dataquery.affectedRows > 0) {
+    if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
             rc: "200",
@@ -54,7 +54,7 @@ returnmld.acipaytambahkategori = async function (req, data, con) {
     }else{
         dataquery = await util.eksekusiQueryPromise(req, `INSERT INTO 01_acipay_kategorinonppob(APISERVER_ID, URUTAN, KATEGORI_ID, KATEGORI_NAMA, TIPE, IMGURL, SLUG_URL, STATUS, PLACEHOLDER, KETERANGAN,OPERATOR_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, [data[0], data[1], data[2],data[3], data[4], data[5],data[6], data[7], data[8],data[9], data[11]], con);
     }
-    if (typeof dataquery.affectedRows === "undefined" || dataquery.affectedRows > 0) {
+    if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
             rc: "200",
@@ -73,7 +73,7 @@ returnmld.acipaytambahkategori = async function (req, data, con) {
 returnmld.acipayhapuskategori = async function (req, data, con) {
     pesanbalik = [];
     dataquery = await util.eksekusiQueryPromise(req, `DELETE FROM 01_acipay_kategorinonppob WHERE KATEGORI_ID = ?`, [data[0]], con);
-    if (typeof dataquery.affectedRows === "undefined" || dataquery.affectedRows > 0) {
+    if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
             rc: "200",
@@ -162,7 +162,7 @@ returnmld.tambahprodukacipay = async function (req, data, con) {
     }else{
         dataquery = await util.eksekusiQueryPromise(req, `INSERT INTO 01_acipay_produknonppob(PRODUK_ID, PRODUK_ID_SERVER, APISERVER_ID, PRODUK_OPERATOR_ID, PRODUK_KATEGORI_ID, NAMA_PRODUK, KETERANGAN, HARGA_SERVER, MARKUP, HARGA_UMUM, HARGA_AGEN, HARGA_MEGAAGEN, HARGA_LAINLAIN, STATUS, POIN, IMGURL, JAM_MULAI, JAM_TUTUP, MULTI, STOK, URUTAN, JENISPRODUK, TAMPIL) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, [data[1], data[2],data[3], data[4], data[5], data[6], data[7],data[8], data[9], data[10], data[11], data[12],data[13], data[14], data[15], data[16], data[17],data[18], data[19], data[20],data[21], data[22], data[23]], con);
     }
-    if (typeof dataquery.affectedRows === "undefined" || dataquery.affectedRows > 0) {
+    if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
             rc: "200",

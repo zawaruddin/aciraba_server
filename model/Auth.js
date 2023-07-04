@@ -18,7 +18,7 @@ auth.pendaftaranmember = async function (req, data, con) {
       msg: 'Sistem kami mendeteksi bahwa terdapat duplikasi. Silahkan generate ulang TENANT ID OUTLET anda'
     };
   } else {
-    let queryproses = await util.eksekusiQueryPromise(req, 'INSERT INTO `01_tms_penggunaaplikasi`(`PENGGUNA_ID`, `NAMA`, `NAMAOUTLET`, `NAMAPENGGUNA`, `PASSWORD`, `KODEUNIKMEMBER`, `URLFOTO`, `HAKAKSESID`, `ALAMAT`, `NOTELP`, `NOREKENING`, `KETERANGAN`, `TOTALDEPOSIT`, `IDHAKAKSES`, `PIN`, `LATLONG`, `EMAIL`, `TOKENKEY`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', ['',data[1],data[0],data[2],hashedPassword,data[4],'','OWNER','','','','','0','','','','',tokenjwt], con)
+    let queryproses = await util.eksekusiQueryPromise(req, 'INSERT INTO `01_tms_penggunaaplikasi`(`PENGGUNA_ID`, `NAMA`, `NAMAOUTLET`, `NAMAPENGGUNA`, `PASSWORD`, `KODEUNIKMEMBER`, `URLFOTO`, `HAKAKSESID`, `ALAMAT`, `NOTELP`, `NOREKENING`, `KETERANGAN`, `TOTALDEPOSIT`, `IDHAKAKSES`, `PIN`, `LATLONG`, `EMAIL`, `TOKENKEY`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', ['0',data[1],data[0],data[2],hashedPassword,data[4],'','OWNER','','','','','0','','','','',tokenjwt], con)
     if (queryproses.affectedRows > 0) {
       data = {
         success: 'true',
@@ -38,9 +38,10 @@ auth.pendaftaranmember = async function (req, data, con) {
 }
 auth.registerapps = async function (req, data, con) {
   pesanbalik = [];
-  let hashedPassword = await bcrypt.hash(data[2], 10)
-  let hashedPIN = await bcrypt.hash(data[16], 10)
-  let adadata = await util.eksekusiQueryPromise(req, `SELECT COALESCE(COUNT(*),0) as ADADATA FROM 01_tms_penggunaaplikasi where NAMAPENGGUNA = ? AND KODEUNIKMEMBER = ?`, [data[1], data[8]], con);
+  let hashedPIN = await bcrypt.hash(data[14], 10)
+  let hashedPassword = await bcrypt.hash(data[4], 10)
+  let tokenjwt = jwt.sign({ username: data[3], kodeunikmember: data[5] }, process.env.ACCESS_TOKEN_RHS, { expiresIn: '1y'  });
+  let adadata = await util.eksekusiQueryPromise(req, `SELECT COALESCE(COUNT(*),0) as ADADATA FROM 01_tms_penggunaaplikasi where NAMAPENGGUNA = ? AND KODEUNIKMEMBER = ?`, [data[3], data[5]], con);
   if (adadata[0].ADADATA > 0) {
     data = {
       success: 'false',
@@ -48,7 +49,7 @@ auth.registerapps = async function (req, data, con) {
       msg: 'Informasi email atau username yang didaftarkan pada Sistem sudah terdaftar, silahkan daftarkan dengan akun lain'
     };
   } else {
-    let queryproses = await util.eksekusiQueryPromise(req, 'INSERT INTO 01_tms_penggunaaplikasi(PENGGUNA_ID, NAMAPENGGUNA, PASSWORD, URLFOTO, HAKAKSESID, NAMA, ALAMAT, NOTELP, KODEUNIKMEMBER, STATUSMEMBER, KETERANGAN, SESSIONKODEUNIKMEMBER, PASSWORDWEB, TOTALDEPOSIT, JSONMENU, OUTLET, PIN, LATLONG,NOMOR,EMAIL) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [data[0],data[1],hashedPassword,data[3],data[4],data[5],data[6],data[7],data[8],data[9],data[10],data[11],hashedPassword,data[13],data[14],data[15],hashedPIN,data[17],data[18],data[19]], con)
+    let queryproses = await util.eksekusiQueryPromise(req, 'INSERT INTO `01_tms_penggunaaplikasi`(`AI_PENGGUNA`,`PENGGUNA_ID`, `NAMA`, `NAMAOUTLET`, `NAMAPENGGUNA`, `PASSWORD`, `KODEUNIKMEMBER`, `URLFOTO`, `HAKAKSESID`, `ALAMAT`, `NOTELP`, `NOREKENING`, `KETERANGAN`, `TOTALDEPOSIT`, `IDHAKAKSES`, `PIN`, `LATLONG`, `EMAIL`, `TOKENKEY`, `STATUSAKTIF`, `NOMOR`) VALUES (0, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [data[0],data[1],data[2],data[3],hashedPassword,data[5],data[6],data[7],data[8],data[9],data[10],data[11],data[12],data[13],hashedPIN,data[15],data[16],tokenjwt,data[18],data[19]], con)
     if (queryproses.affectedRows > 0) {
       data = {
         success: 'true',
@@ -237,6 +238,53 @@ auth.statuspegawai = async function (req, data, con) {
           success: 'false',
           rc: dataquery.code,
           msg: dataquery.sqlMessage,
+      }
+  }
+  pesanbalik.push(data)
+  return pesanbalik;
+}
+auth.simpanhakakses = async function (req, data, con) {
+  pesanbalik = [];
+  let dataquery;
+  if (data[3] == 'true'){
+    dataquery = await util.eksekusiQueryPromise(req, "UPDATE 01_tms_penggunaaplikasiha SET NAMAHAKAKSES = ?, JSONMENU = ? WHERE AI = ? AND KODEUNIKMEMBER = ?", [data[1],data[2],data[4],data[0]], con);
+  }else{
+    dataquery = await util.eksekusiQueryPromise(req, "INSERT INTO `01_tms_penggunaaplikasiha`(`AI`, `KODEUNIKMEMBER`, `NAMAHAKAKSES`, `JSONMENU`) VALUES (0, ?, ?, ?)", [data[0],data[1],data[2]], con);
+  }
+  if (dataquery.affectedRows > 0) {
+      data = {
+          success: "true",
+          rc: "200",
+          msg: "Hak akses berhasil ditambahkan dengan NAMA : "+data[1]+" pada TENNAT ID : "+data[0]
+      }
+  } else {
+      data = {
+          success: 'false',
+          rc: dataquery.code,
+          msg: dataquery.sqlMessage,
+      }
+  }
+  pesanbalik.push(data)
+  return pesanbalik;
+}
+auth.daftarhakakses = async function (req, data, con) {
+  pesanbalik = [];
+  let dataquery = await util.eksekusiQueryPromise(req, "SELECT * FROM 01_tms_penggunaaplikasiha WHERE KODEUNIKMEMBER = ? AND NAMAHAKAKSES LIKE ?", [data[0],'%'+data[1]+'%'], con);
+  if (dataquery.length > 0) {
+    data = {
+        success: "true",
+        rc: "200",
+        msg: "Data ditemukan.",
+        data:dataquery,
+        totaldata:dataquery.length,
+    }
+  } else {
+      data = {
+          success: 'false',
+          rc: dataquery.code,
+          msg: dataquery.sqlMessage,
+          data:null,
+          totaldata:0,
       }
   }
   pesanbalik.push(data)

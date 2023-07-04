@@ -35,7 +35,7 @@ auth.updateproduk = async function (req, data, con) {
         batchinsert.push(obj)
     }
     dataquery = await util.eksekusiQueryPromise(req, `INSERT INTO 01_acipay_produknonppob(PRODUK_ID, PRODUK_ID_SERVER,APISERVER_ID,PRODUK_OPERATOR_ID,PRODUK_KATEGORI_ID,NAMA_PRODUK,KETERANGAN,HARGA_SERVER,MARKUP,HARGA_UMUM,HARGA_AGEN,HARGA_MEGAAGEN,HARGA_LAINLAIN,STATUS,POIN,IMGURL,JAM_MULAI,JAM_TUTUP,MULTI,STOK,URUTAN,JENISPRODUK) VALUES ? ON DUPLICATE KEY UPDATE KETERANGAN=VALUES(KETERANGAN),HARGA_SERVER=VALUES(HARGA_SERVER),JAM_MULAI=VALUES(JAM_MULAI),JAM_TUTUP=VALUES(JAM_TUTUP),MULTI=VALUES(MULTI),STOK=VALUES(STOK),STATUS=VALUES(STATUS)`, [batchinsert.map(item => [item.PRODUK_ID, item.PRODUK_ID_SERVER, item.APISERVER_ID, item.PRODUK_OPERATOR_ID, item.PRODUK_KATEGORI_ID, item.NAMA_PRODUK, item.KETERANGAN, item.HARGA_SERVER, item.MARKUP, item.HARGA_UMUM, item.HARGA_AGEN, item.HARGA_MEGAAGEN, item.HARGA_LAINLAIN, item.STATUS, item.POIN, item.IMGURL, item.JAM_MULAI, item.JAM_TUTUP, item.MULTI, item.STOK, item.URUTAN, item.JENISPRODUK])], con);
-    if (typeof dataquery.affectedRows === "undefined" || dataquery.affectedRows > 0) {
+    if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
             rc: "200",

@@ -4,6 +4,8 @@ const router = express.Router()
 const authController = require("../controller/authController")
 
 router.post("/pendaftaranmember",authController.pendaftaranmember)
+router.post("/simpanhakakses",authController.simpanhakakses)
+router.post("/daftarhakakses",authController.daftarhakakses)
 router.post("/loginapps",authController.loginapps)
 router.post("/registerapps",authController.registerapps)
 router.post("/outlet",authController.outlet)

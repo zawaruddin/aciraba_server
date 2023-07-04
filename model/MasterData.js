@@ -355,8 +355,8 @@ masterdata.tambahitemajaxbulk = async function (req, data, con) {
         };
         batchinsertstok.push(obj);
     }
-    dataquery = await util.eksekusiQueryPromise(req, `INSERT IGNORE INTO 01_tms_barangkharisma(AI,BARANG_ID, QRCODE_ID, NAMABARANG, BERAT_BARANG, PARETO_ID, SUPPLER_ID, KATEGORI_ID, BRAND_ID, KETERANGANBARANG, HARGABELI, HARGAJUAL, SATUAN, AKTIF, KODEUNIKMEMBER, APAKAHGROSIR, STOKDAPATMINUS, JENISBARANG, PEMILIK) VALUES ?`, [batchinsert.map(item => ['',item.BARANG_ID, item.QRCODE_ID, item.NAMABARANG, item.BERAT_BARANG, item.PARETO_ID, item.SUPPLER_ID, item.KATEGORI_ID, item.BRAND_ID, item.KETERANGANBARANG, item.HARGABELI, item.HARGAJUAL, item.SATUAN, item.AKTIF, item.KODEUNIKMEMBER, item.APAKAHGROSIR, item.STOKDAPATMINUS, item.JENISBARANG, item.PEMILIK])], con);
-    dataquery = await util.eksekusiQueryPromise(req, `INSERT IGNORE INTO 01_tms_stok(DISPLAY_AI,BARANG_ID, DISPLAY, GUDANG, RETUR, OUTLET, KODEUNIKMEMBER) VALUES ?`, [batchinsertstok.map(item => ['',item.BARANG_ID, item.DISPLAY, item.GUDANG, item.RETUR, item.OUTLET, item.KODEUNIKMEMBER])], con);
+    dataquery = await util.eksekusiQueryPromise(req, `INSERT IGNORE INTO 01_tms_barangkharisma(AI,BARANG_ID, QRCODE_ID, NAMABARANG, BERAT_BARANG, PARETO_ID, SUPPLER_ID, KATEGORI_ID, BRAND_ID, KETERANGANBARANG, HARGABELI, HARGAJUAL, SATUAN, AKTIF, KODEUNIKMEMBER, APAKAHGROSIR, STOKDAPATMINUS, JENISBARANG, PEMILIK) VALUES ?`, [batchinsert.map(item => ['0',item.BARANG_ID, item.QRCODE_ID, item.NAMABARANG, item.BERAT_BARANG, item.PARETO_ID, item.SUPPLER_ID, item.KATEGORI_ID, item.BRAND_ID, item.KETERANGANBARANG, item.HARGABELI, item.HARGAJUAL, item.SATUAN, item.AKTIF, item.KODEUNIKMEMBER, item.APAKAHGROSIR, item.STOKDAPATMINUS, item.JENISBARANG, item.PEMILIK])], con);
+    dataquery = await util.eksekusiQueryPromise(req, `INSERT IGNORE INTO 01_tms_stok(DISPLAY_AI,BARANG_ID, DISPLAY, GUDANG, RETUR, OUTLET, KODEUNIKMEMBER) VALUES ?`, [batchinsertstok.map(item => ['0',item.BARANG_ID, item.DISPLAY, item.GUDANG, item.RETUR, item.OUTLET, item.KODEUNIKMEMBER])], con);
     if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
@@ -1167,7 +1167,7 @@ masterdata.jsonhapusbrand = async function (req, data, con) {
 masterdata.jsontambahbrand = async function (req, data, con) {
     pesanbalik = [];
     dataquery = await util.eksekusiQueryPromise(req, 'INSERT INTO `01_tms_brand`(`AI`, `BRAND_ID`, `NAMA_BRAND`, `KODEUNIKMEMBER`) VALUES (?,?,?,?)',
-    ['',data[0],data[1],data[2]], con);
+    ['0',data[0],data[1],data[2]], con);
     if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
@@ -1209,7 +1209,7 @@ masterdata.jasondaftarprincipal = async function (req, data, con) {
 masterdata.jsontambahprincipal = async function (req, data, con) {
     pesanbalik = [];
     dataquery = await util.eksekusiQueryPromise(req, 'INSERT INTO `01_tms_principal`(`AI`, `PRINCIPAL_ID`, `NAMA_PRINCIPAL`, `KODEUNIKMEMBER`) VALUES (?, ?, ?, ?)',
-    ['',data[0],data[1],data[2]], con);
+    ['0',data[0],data[1],data[2]], con);
     if (dataquery.affectedRows > 0) {
         data = {
             success: "true",

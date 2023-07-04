@@ -110,7 +110,7 @@ resto.simpaninformasimeja = async function (req, data, con) {
     if (data[9] == "0"){
         dataquery = await util.eksekusiQueryPromise(req, 'UPDATE `01_tms_resto_daftarmeja` SET `NAMAMEJA` = ?, `GAMBAR` = ?, `KETERANGAN` = ?, `LANTAI` = ?, `JAMBUKA` = ?, `JAMTUTUP` = ? WHERE `KODEMEJA` = ?', [data[1], data[2], data[3], data[4], data[7], data[8], data[0]], con)
     }else{
-        dataquery = await util.eksekusiQueryPromise(req, 'INSERT INTO `01_tms_resto_daftarmeja`(`AI`,`KODEMEJA`, `NAMAMEJA`, `GAMBAR`, `KETERANGAN`, `LANTAI`, `OUTLET`, `KODEUNIKMEMBER`, `JAMBUKA`, `JAMTUTUP`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', ['', data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8]], con)
+        dataquery = await util.eksekusiQueryPromise(req, 'INSERT INTO `01_tms_resto_daftarmeja`(`AI`,`KODEMEJA`, `NAMAMEJA`, `GAMBAR`, `KETERANGAN`, `LANTAI`, `OUTLET`, `KODEUNIKMEMBER`, `JAMBUKA`, `JAMTUTUP`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', ['0', data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8]], con)
     }
     if (dataquery.affectedRows > 0) {
         data = {

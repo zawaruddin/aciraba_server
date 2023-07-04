@@ -11,7 +11,7 @@
  Target Server Version : 80024
  File Encoding         : 65001
 
- Date: 21/06/2023 08:29:34
+ Date: 01/07/2023 19:41:56
 */
 
 SET NAMES utf8mb4;
@@ -44,7 +44,7 @@ CREATE TABLE `01_tms_keranjang`  (
   `KODEKOMPUTER` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `STATUSBARANGPROSES` int(0) NOT NULL,
   PRIMARY KEY (`AI`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 932 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 953 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of 01_tms_keranjang
@@ -88,7 +88,7 @@ CREATE TABLE `01_tms_keranjang_barangmasuk`  (
   `KODEUNIKMEMBER` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `KODEKOMPUTER` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`AI`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of 01_tms_keranjang_barangmasuk
@@ -123,7 +123,7 @@ CREATE TABLE `01_tms_keranjang_pending`  (
   `KODEKOMPUTER` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `STATUSBARANGPROSES` int(0) NOT NULL,
   PRIMARY KEY (`AI`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 59 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for 01_trs_mutasibarang_detail
@@ -146,7 +146,7 @@ CREATE TABLE `01_trs_mutasibarang_detail`  (
   `KODEUNIKMEMBER` varchar(45) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `KODEKOMPUTER` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   PRIMARY KEY (`AI`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for 01_trs_opname_detail
@@ -167,7 +167,7 @@ CREATE TABLE `01_trs_opname_detail`  (
   `INFORMASI` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `KODEKOMPUTER` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`AI`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for 01_trs_returpembelian_detail
@@ -192,7 +192,7 @@ CREATE TABLE `01_trs_returpembelian_detail`  (
   `OUTLET` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `KODEKOMPUTER` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   PRIMARY KEY (`AI`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of 01_trs_returpembelian_detail
@@ -223,7 +223,7 @@ CREATE TABLE `01_trs_returpenjualan_detail`  (
   `KODEUNIKMEMBER` varchar(45) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `KODEKOMPUTER` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   PRIMARY KEY (`AI`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of 01_trs_returpenjualan_detail

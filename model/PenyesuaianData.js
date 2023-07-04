@@ -29,9 +29,9 @@ penjualan.simpantransaksiopname = async function (req, data, con) {
         batchinsert.push(obj);
     }
     dataquery = await util.eksekusiQueryPromise(req, 'INSERT INTO 01_trs_opname(AI, NOTAOPNAME, TOTALBARANG, TOTALSURPLUS, TOTALMINUS, TOTALOPANAME, OUTLET, KODEUNIKMEMBER, NOMOR, KETERANGAN, PETUGAS,TANGGALTRS) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)', [
-        '', data[1], data[2], data[3], data[4] , data[5] , data[6] , data[7] , data[8] , data[9] , data[10], data[11]], con)
+        '0', data[1], data[2], data[3], data[4] , data[5] , data[6] , data[7] , data[8] , data[9] , data[10], data[11]], con)
     if (dataquery.affectedRows > 0) {
-        dataquery = await util.eksekusiQueryPromise(req, `INSERT INTO 01_trs_opname_detail(AI, NOTAOPNAME, KODEBARANG, NAMABARANG, LOKASIOPNAME, STOKKOMPUTER, STOKOPNAME, KONDISIOPNAME, OUTLET, KODEUNIKMEMBER, HPP, INFORMASI) VALUES ?`, [batchinsert.map(item => ['',item.NOTAOPNAME, item.KODEBARANG, item.NAMABARANG, item.LOKASIOPNAME, item.STOKKOMPUTER, item.STOKOPNAME, item.KONDISIOPNAME, item.OUTLET, item.KODEUNIKMEMBER, item.HPP, item.INFORMASI])], con)
+        dataquery = await util.eksekusiQueryPromise(req, `INSERT INTO 01_trs_opname_detail(AI, NOTAOPNAME, KODEBARANG, NAMABARANG, LOKASIOPNAME, STOKKOMPUTER, STOKOPNAME, KONDISIOPNAME, OUTLET, KODEUNIKMEMBER, HPP, INFORMASI) VALUES ?`, [batchinsert.map(item => ['0',item.NOTAOPNAME, item.KODEBARANG, item.NAMABARANG, item.LOKASIOPNAME, item.STOKKOMPUTER, item.STOKOPNAME, item.KONDISIOPNAME, item.OUTLET, item.KODEUNIKMEMBER, item.HPP, item.INFORMASI])], con)
         data = {
             success: "true",
             rc: "200",
@@ -70,9 +70,9 @@ penjualan.simpanmutasi = async function (req, data, con) {
         };
         batchinsert.push(obj);
     }
-    dataquery = await util.eksekusiQueryPromise(req, 'INSERT INTO `01_trs_mutasibarang`(`AI`, `NOMORMUTASI`, `PETUGAS`, `TANGGALTRS`, `OUTLET`, `KODEUNIKMEMBER`, `NOMOR`, `KETERANGAN`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', ['', data[1], data[2], data[3], data[4] , data[5] , data[6] , data[7]], con)
+    dataquery = await util.eksekusiQueryPromise(req, 'INSERT INTO `01_trs_mutasibarang`(`AI`, `NOMORMUTASI`, `PETUGAS`, `TANGGALTRS`, `OUTLET`, `KODEUNIKMEMBER`, `NOMOR`, `KETERANGAN`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', ['0', data[1], data[2], data[3], data[4] , data[5] , data[6] , data[7]], con)
     if (dataquery.affectedRows > 0) {
-        dataquery = await util.eksekusiQueryPromise(req, 'INSERT INTO `01_trs_mutasibarang_detail`(`AI`, `NOMORMUTASI`, `KODEBARANG`, `NAMABARANG`, `UNIT`, `STOKAWAL`, `STOKMUTASI`, `NOMINAL`, `ASALOUTLET`, `TUJUANOUTLET`, `ASALLOKASIITEM`, `TUJUANLOKASIITEM`, `OUTLET`, `KODEUNIKMEMBER`) VALUES ?', [batchinsert.map(item => ['',item.NOMORMUTASI, item.KODEBARANG, item.NAMABARANG, item.UNIT, item.STOKAWAL, item.STOKMUTASI, item.NOMINAL, item.ASALOUTLET, item.TUJUANOUTLET, item.ASALLOKASIITEM, item.TUJUANLOKASIITEM, item.OUTLET, item.KODEUNIKMEMBER])], con)
+        dataquery = await util.eksekusiQueryPromise(req, 'INSERT INTO `01_trs_mutasibarang_detail`(`AI`, `NOMORMUTASI`, `KODEBARANG`, `NAMABARANG`, `UNIT`, `STOKAWAL`, `STOKMUTASI`, `NOMINAL`, `ASALOUTLET`, `TUJUANOUTLET`, `ASALLOKASIITEM`, `TUJUANLOKASIITEM`, `OUTLET`, `KODEUNIKMEMBER`) VALUES ?', [batchinsert.map(item => ['0',item.NOMORMUTASI, item.KODEBARANG, item.NAMABARANG, item.UNIT, item.STOKAWAL, item.STOKMUTASI, item.NOMINAL, item.ASALOUTLET, item.TUJUANOUTLET, item.ASALLOKASIITEM, item.TUJUANLOKASIITEM, item.OUTLET, item.KODEUNIKMEMBER])], con)
         data = {
             success: "true",
             rc: "200",

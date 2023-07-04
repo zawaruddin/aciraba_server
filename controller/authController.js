@@ -20,25 +20,25 @@ authController.pendaftaranmember = async function (req, res) {
 authController.registerapps = async function (req, res) {
 	var data = []
 	data.push(req.body.PENGGUNA_ID)
+	data.push(req.body.NAMA)
+	data.push(req.body.NAMAOUTLET)
 	data.push(req.body.NAMAPENGGUNA)
 	data.push(req.body.PASSWORD)
+	data.push(req.body.KODEUNIKMEMBER)
 	data.push(req.body.URLFOTO)
 	data.push(req.body.HAKAKSESID)
-	data.push(req.body.NAMA)
 	data.push(req.body.ALAMAT)
 	data.push(req.body.NOTELP)
-	data.push(req.body.KODEUNIKMEMBER)
-	data.push(req.body.STATUSMEMBER)
+	data.push(req.body.NOREKENING)
 	data.push(req.body.KETERANGAN)
-	data.push(req.body.SESSIONKODEUNIKMEMBER)
-	data.push(req.body.PASSWORDWEB)
 	data.push(req.body.TOTALDEPOSIT)
-	data.push(req.body.JSONMENU)
-	data.push(req.body.OUTLET)
+	data.push(req.body.IDHAKAKSES)
 	data.push(req.body.PIN)
 	data.push(req.body.LATLONG)
+	data.push(req.body.EMAIL)
+	data.push(req.body.TOKENKEY)
+	data.push(req.body.STATUSAKTIF)
 	data.push(req.body.NOMOR)
-	data.push(req.body.EMAILAKIIF)
 	hasiljson = await AuthModel.registerapps(req, data, req.con)
 	res.json({
 		registerapps: hasiljson,
@@ -140,6 +140,27 @@ authController.daftarpegawai = async function (req, res) {
 	var data = []
 	data.push(req.body.KODEUNIKMEMBER)
 	hasiljson = await AuthModel.daftarpegawai(req, data, req.con)
+	res.json({
+		hasiljson: hasiljson,
+	});
+}
+authController.simpanhakakses = async function (req, res) {
+	var data = []
+	data.push(req.body.KODEUNIKMEMBER)
+	data.push(req.body.NAMAHAKAKSES)
+	data.push(req.body.JSONMENU)
+	data.push(req.body.KONDISI)
+	data.push(req.body.AI)
+	hasiljson = await AuthModel.simpanhakakses(req, data, req.con)
+	res.json({
+		hasiljson: hasiljson,
+	});
+}
+authController.daftarhakakses = async function (req, res) {
+	var data = []
+	data.push(req.body.KODEUNIKMEMBER)
+	data.push(typeof req.body.KATAKUNCI === "undefined" ? "" : req.body.KATAKUNCI)
+	hasiljson = await AuthModel.daftarhakakses(req, data, req.con)
 	res.json({
 		hasiljson: hasiljson,
 	});

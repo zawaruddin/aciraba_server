@@ -238,7 +238,7 @@ penjualan.tambahreturpenjualan = async function (req, data, con) {
         dataquery = await util.eksekusiQueryPromise(req, 'DELETE FROM 01_trs_returpenjualan_detail WHERE NOTRXRETUR = ? AND OUTLET = ? AND KODEUNIKMEMBER = ?',[data[4],data[11],data[12]], con)
         dataquery = await util.eksekusiQueryPromise(req, 'DELETE FROM 01_trs_returpenjualan WHERE NOTRXRETUR = ? AND OUTLET = ? AND KODEUNIKMEMBER = ?',[data[4],data[11],data[12]], con)
     }
-    dataquery = await util.eksekusiQueryPromise(req, 'INSERT INTO `01_trs_returpenjualan`(`AI`, `NOTRXRETUR`, `PETUGAS`, `IDPELANGGAN`, `TANGGALRETUR`, `NOMORNOTA`, `TOTALBARANG`, `TOTALRETUR`, `OUTLET`, `KODEUNIKMEMBER`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', ['',data[4],data[5],data[6],data[7],data[8],data[9],data[10],data[11],data[12]], con)
+    dataquery = await util.eksekusiQueryPromise(req, 'INSERT INTO `01_trs_returpenjualan`(`AI`, `NOTRXRETUR`, `PETUGAS`, `IDPELANGGAN`, `TANGGALRETUR`, `NOMORNOTA`, `TOTALBARANG`, `TOTALRETUR`, `OUTLET`, `KODEUNIKMEMBER`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', ['0',data[4],data[5],data[6],data[7],data[8],data[9],data[10],data[11],data[12]], con)
     if (dataquery.affectedRows > 0) {
         if (data[2] == "true"){
             for (let i = 0; i < data[1].length; i++) {
@@ -422,7 +422,7 @@ penjualan.simpantransaksi = async function (req, data, con) {
     for (let i = 0; i < data[1]; i++) {
         statustersajikan = informasibarangdetail[i][14];
         var obj = {
-            AI_TRANSAKSIKELUAR: '',
+            AI_TRANSAKSIKELUAR: '0',
             PK_NOTAPENJUALAN: data[2],
             FK_BARANG: informasibarangdetail[i][4].split(',')[0],
             NAMABARANG: informasibarangdetail[i][0].split(',')[0],
@@ -455,10 +455,10 @@ penjualan.simpantransaksi = async function (req, data, con) {
         }
     }else{
         pesan = "Transaksi dengan kode "+data[2]+" berhasil disimpan pada "+data[9]+" "+data[10].replaceAll('.', ':')+". Apakah anda ingin menceta bukti transaksi ?"
-        dataquery = await util.eksekusiQueryPromise(req, `INSERT INTO 01_trs_barangkeluar (AI_TRANSAKSIKELUAR, PK_NOTAPENJUALAN, FK_MEMBER, FK_SALESMAN, ENUM_JENISTRANSAKSI, JATUHTEMPO, LOKASI, TGLKELUAR, WAKTU, KASIR, NOMORNOTA, KETERANGAN, KODEUNIKMEMBER, NOMINALTUNAI, NOMINALKREDIT, NOMINALKARTUDEBIT, NOMORKARTUDEBIT, BANKDEBIT, NOMINALKARTUKREDIT, NOMORKARTUKREDIT, BANKKREDIT, NOMINALEMONEY, NAMAEMONEY, NOMINALPOTONGAN, NOMINALPAJAKKELUAR, KEMBALIAN, TOTALBELANJA, PAJAKTOKO, PAJAKNEGARA, POTONGANGLOBAL, TIPETRANSAKSI) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,['',data[2],data[3],data[4],data[5],data[6],data[7],data[8],data[9],data[10],data[11],data[12],data[13],data[14],data[15],data[16],data[17],data[18],data[19],data[20],data[21],data[22],data[23],data[24],data[25],data[26],data[27],data[29],data[30],data[31],data[32]],con);
+        dataquery = await util.eksekusiQueryPromise(req, `INSERT INTO 01_trs_barangkeluar (AI_TRANSAKSIKELUAR, PK_NOTAPENJUALAN, FK_MEMBER, FK_SALESMAN, ENUM_JENISTRANSAKSI, JATUHTEMPO, LOKASI, TGLKELUAR, WAKTU, KASIR, NOMORNOTA, KETERANGAN, KODEUNIKMEMBER, NOMINALTUNAI, NOMINALKREDIT, NOMINALKARTUDEBIT, NOMORKARTUDEBIT, BANKDEBIT, NOMINALKARTUKREDIT, NOMORKARTUKREDIT, BANKKREDIT, NOMINALEMONEY, NAMAEMONEY, NOMINALPOTONGAN, NOMINALPAJAKKELUAR, KEMBALIAN, TOTALBELANJA, PAJAKTOKO, PAJAKNEGARA, POTONGANGLOBAL, TIPETRANSAKSI) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,['0',data[2],data[3],data[4],data[5],data[6],data[7],data[8],data[9],data[10],data[11],data[12],data[13],data[14],data[15],data[16],data[17],data[18],data[19],data[20],data[21],data[22],data[23],data[24],data[25],data[26],data[27],data[29],data[30],data[31],data[32]],con);
         dataquery = await util.eksekusiQueryPromise(req, `INSERT INTO 01_trs_barangkeluar_detail (AI_TRANSAKSIKELUAR, PK_NOTAPENJUALAN, FK_BARANG, NAMABARANG, HARGAJUAL, HARGABELI, STOKBARANGKELUAR, DARIPERUSAHAAN, PPN, KODEUNIKMEMBER, BRAND_ID, PRINCIPAL_ID, STOKDAPATMINUS, JSONTAMBAHAN, CATATANPERBARANG, APAKAHVARIAN, HARGAJUALSEMENTARA, STATUSBARANGPROSES, TANGGALPROSES, WAKTUPROSES) VALUES ?`,[batchinsert.map(item => [item.AI_TRANSAKSIKELUAR, item.PK_NOTAPENJUALAN,item.FK_BARANG, item.NAMABARANG,item.HARGAJUAL, item.HARGABELI,item.STOKBARANGKELUAR, item.DARIPERUSAHAAN, item.PPN, item.KODEUNIKMEMBER, item.BRAND_ID, item.PRINCIPAL_ID, item.STOKDAPATMINUS, item.JSONTAMBAHAN, item.CATATANPERBARANG, item.APAKAHVARIAN, item.HARGAJUALSEMENTARA, item.STATUSBARANGPROSES, item.TANGGALPROSES, item.WAKTUPROSES])], con);
         if (data[32] == "1"){
-            dataquery = await util.eksekusiQueryPromise(req, `INSERT INTO 01_tms_resto_pesanmeja (AI, KODEPESAN, KODEMENUPESANAN, KODEMEJA, PEMESAN, NOTELEPON, UNTUKBERAPAORANG, TOTALBELANJA, DP, TANGGAL, WAKTU, TANGGALAKHIR, WAKTUAKHIR, NOMOR, WARNAMEMO, OUTLET, KODEUNIKMEMBER, STATUSPESAN) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,['',data[33],data[34],data[35],data[36],data[37],data[38],data[39],data[40],data[41],data[42],data[43],data[44],data[45],data[46].replaceAll('#', ''),data[7],data[13],data[47]],con);
+            dataquery = await util.eksekusiQueryPromise(req, `INSERT INTO 01_tms_resto_pesanmeja (AI, KODEPESAN, KODEMENUPESANAN, KODEMEJA, PEMESAN, NOTELEPON, UNTUKBERAPAORANG, TOTALBELANJA, DP, TANGGAL, WAKTU, TANGGALAKHIR, WAKTUAKHIR, NOMOR, WARNAMEMO, OUTLET, KODEUNIKMEMBER, STATUSPESAN) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,['0',data[33],data[34],data[35],data[36],data[37],data[38],data[39],data[40],data[41],data[42],data[43],data[44],data[45],data[46].replaceAll('#', ''),data[7],data[13],data[47]],con);
         }
     }
     batchinsert = [];
@@ -518,7 +518,7 @@ penjualan.transaksipiutang = async function (req, data, con) {
         batchinsert.push(obj);
     }
     dataquery = await util.eksekusiQueryPromise(req, `INSERT INTO 01_tms_piutangkredit_detail(NOTRANSAKSI, TRANSAKSI_ID, TANGGALBAYAR, WAKTU, KASIR_ID, BAYAR, POTONGAN, KETERANGAN, KODEUNIKMEMBER, NOTARETUR, NOMOR, LOKASI) VALUES  ?`, [batchinsert.map(item => [item.NOTRANSAKSI, item.TRANSAKSI_ID, item.TANGGALBAYAR, item.WAKTU, item.KASIR_ID, item.BAYAR, item.POTONGAN, item.KETERANGAN, item.KODEUNIKMEMBER, item.NOTARETUR, item.NOMOR, item.LOKASI])], con)
-    if (typeof dataquery.affectedRows === "undefined" || dataquery.affectedRows > 0) {
+    if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
             rc: "200",
