@@ -1250,7 +1250,12 @@ masterdata.jsonhapusprincipal = async function (req, data, con) {
 }
 masterdata.prosesoutlet = async function (req, data, con) {
     pesanbalik = [];
+    await util.eksekusiQueryPromise(req,"SET autocommit = 0", [], con);
+    await util.eksekusiQueryPromise(req,"START TRANSACTION", [], con);
+    await util.eksekusiQueryPromise(req,"INSERT INTO `01_tms_member`(`AI`, `MEMBER_ID`, `NAMA`, `ALAMAT`, `KOTA`, `PROVINSI`, `NEGARA`, `KODEPOS`, `JK`, `EMAIL`, `TELEPON`, `FAX`, `AKHIRAKTIF`, `STATUSAKTIF`, `POINT`, `NOREK`, `PEMILIKREK`, `BANK`, `NPWP`, `KETERANGAN`, `LIMITJUMLAHPIUTANG`, `JENIS`, `GRUP`, `MINIMALPOIN`, `BATASTAMBAHKREDIT`, `KEJARTARGET`, `NAMAFILE`, `USERNAME`, `PASSWORD`, `CATATAN`, `LIMITBARANGONLINE`, `LOGO`, `LIMIT_BRG`, `NISBACKUP`, `KODEUNIKMEMBER`, `OUTLET`, `NOMOR`, `TOTALDEPOSIT`, `ISRESELLER`, `ANGKAKESUKAAN`, `KECAMATAN`) VALUES (0, '1001', 'Member::Umum', '-', 'Malang', 'Jawa Timur', 'INDONESIA', '0', 'P', '-', '-', '', '9999-12-31', 0, 0, '', '', '', '', 'Informasi tidak tersedia untuk saat ini atau agan ini masih malu malu untuk menceritakan dirinya', 0.00, 'Newbie Member', 'UMUM', 100000.00, 7, 0.00, '', '1001', '', '', 0, '', 0, '', '"+data[0]+"', '"+data[1]+"', 0, 0.00, 0, 5, '-')", [], con);
+    await util.eksekusiQueryPromise(req," INSERT INTO `01_tms_stok`(`DISPLAY_AI`, `BARANG_ID`, `DISPLAY`, `GUDANG`, `RETUR`, `OUTLET`, `KODEUNIKMEMBER`) VALUES (0, 'ACI100000100000001', 0.00, 0.00, 0.00, '"+data[1]+"', '"+data[0]+"')", [], con);
     dataquery = await util.eksekusiQueryPromise(req, 'INSERT INTO `01_set_outlet`(`AI`, `KODEUNIKMEMBER`, `KODEOUTLET`, `NAMAOUTLET`, `ALAMAT`, `LAT`, `LONG`, `NOTELP`, `APAKAHPUSAT`, `PAJAKNEGARA`, `PAJAKTOKO`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE `KODEUNIKMEMBER` = VALUES (`KODEUNIKMEMBER`), `NAMAOUTLET` = VALUES(`NAMAOUTLET`), `ALAMAT` = VALUES(`ALAMAT`), `LAT` = VALUES(`LAT`), `LONG` = VALUES(`LONG`), `NOTELP` = VALUES(`NOTELP`), `APAKAHPUSAT` = VALUES(`APAKAHPUSAT`), `PAJAKNEGARA` = VALUES(`PAJAKNEGARA`),`PAJAKTOKO` = VALUES(`PAJAKTOKO`)',[null,data[0],data[1],data[2],data[3],data[4],data[5],data[6],data[7],data[8],data[9]], con);
+    await util.eksekusiQueryPromise(req,"COMMIT", [], con);
     if (dataquery.affectedRows > 0) {
         data = {
             success: "true",
