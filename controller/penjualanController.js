@@ -533,6 +533,7 @@ penjualanController.detailkasirpenjualan = async function(req,res){
     let data = []
     data.push(req.body.KONDISI)
     data.push(req.body.DIMANA1)
+    data.push(req.body.DIMANA2)
     hasiljson = await SPModel.dataquery_controller_website(req, data, req.con)
     res.json({hasiljson: hasiljson,});
 }

@@ -140,7 +140,7 @@ resto.loadkds = async function (req, data, con) {
     if (data[6] == "kategori"){
         querykategori = " AND D.KATEGORI_ID = '"+data[7]+"'"
     }
-    dataquery = await util.eksekusiQueryPromise(req, 'SELECT *, B.AI_TRANSAKSIKELUAR as KODEAI, B.KETERANGAN as KETERANGANITEM FROM 01_trs_barangkeluar_detail as A JOIN 01_trs_barangkeluar as B ON A.PK_NOTAPENJUALAN = B.PK_NOTAPENJUALAN JOIN 01_tms_member as C ON B.FK_MEMBER = C.MEMBER_ID JOIN 01_tms_barangkharisma as D ON A.FK_BARANG = D.BARANG_ID WHERE (B.TIPETRANSAKSI BETWEEN 1 AND 100) AND (A.TANGGALPROSES BETWEEN ? AND ?) AND A.PK_NOTAPENJUALAN LIKE ? AND B.LOKASI = ? AND STATUSBARANGPROSES >= -1 AND B.KODEUNIKMEMBER = ? '+querykategori+' ORDER BY A.TANGGALPROSES ASC, A.WAKTUPROSES ASC', [tanggalawal, tanggalakhir, '%'+data[0]+'%', data[4], data[5]], con)
+    dataquery = await util.eksekusiQueryPromise(req, 'SELECT *, B.AI_TRANSAKSIKELUAR as KODEAI, B.KETERANGAN as KETERANGANITEM FROM 01_trs_barangkeluar_detail as A JOIN 01_trs_barangkeluar as B ON A.PK_NOTAPENJUALAN = B.PK_NOTAPENJUALAN JOIN 01_tms_member as C ON B.FK_MEMBER = C.MEMBER_ID JOIN 01_tms_barangkharisma as D ON A.FK_BARANG = D.BARANG_ID WHERE (B.TIPETRANSAKSI BETWEEN 1 AND 100) AND (A.TANGGALPROSES BETWEEN ? AND ?) AND A.PK_NOTAPENJUALAN LIKE ? AND B.LOKASI = ? AND STATUSBARANGPROSES >= -1 AND A.KODEUNIKMEMBER = ? AND B.KODEUNIKMEMBER = ? AND C.KODEUNIKMEMBER = ? AND D.KODEUNIKMEMBER = ? '+querykategori+' GROUP BY FK_BARANG,A.PK_NOTAPENJUALAN ORDER BY A.TANGGALPROSES ASC, A.WAKTUPROSES ASC', [tanggalawal, tanggalakhir, '%'+data[0]+'%', data[4], data[5],data[5],data[5],data[5]], con)
     if (dataquery.length > 0) {
         data = {
             success: "true",
